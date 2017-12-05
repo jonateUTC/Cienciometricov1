@@ -1,0 +1,28 @@
+{% extends 'base1/inicio.html' %}
+{% load staticfiles %}
+{% block navbar %}
+<div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px; background:#E7F1F0; " id="mySidebar">
+  <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+    <a href="{% url 'pais:pais_listar' %}" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> País</a>
+    <a href="{% url 'zona:zona_listar' %}" id="uno" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/iconos-zona.png' %}"> Zona</a>
+    <a href="{% url 'provincia:provincia_listar' %}"  class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/country.png' %}"> Provincia</a>
+    <a href="" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/city.png' %}"> Cantón</a>
+    <a href="" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/university.png' %}"> Universidad</a>
+    <a href="" class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/campus.png' %}"> Campus</a>
+</div>
+
+<div class="w3-main" style="margin-left:200px; ">
+<div class="w3-teal"  >
+  <button class="w3-button w3-teal w3-xlarge w3-hide-large"  onclick="w3_open()">&#9776;</button>
+
+</div>
+{% endblock %}
+{% block content %}
+<br>
+<form method="post">
+    {% csrf_token %}
+    <h1>¿Desea eliminar el registro de {{object.Nombre}}?</h1>
+    <button class="btn btn-danger" type="submit">Si, eliminar</button>
+    <a class="btn btn-default" href="{% url 'zona:zona_listar' %}">Cancelar</a>
+</form>
+{% endblock %}
