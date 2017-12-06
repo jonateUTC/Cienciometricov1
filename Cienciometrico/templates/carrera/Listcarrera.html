@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<br>
+<br>
+
+<div class="wow fadeInUp animated" style="background: #AFB5B9; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
+     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">CARRERA</span> </h2>
+        </div>
+    <br>
+<div class="container">
+<a href="{% url 'carrera:create_Carrera' %}" class="btn btn-primary  pull-right "><i class="glyphicon glyphicon-plus"></i> Nueva Carrera</a>
+    </div>
+<br>
+<div align="center" class="row" style="">
+<div class="table-responsive">
+<table class="table table-bordered" style="text-align:center; width:60%; ">
+	<thead >
+		<tr>
+			<td>#</td>
+			<td>Nombre Carrera</td>
+			<td>Director de Carrera</td>
+			<td>Facultad</td>
+            <td>Acciones</td>
+		</tr>
+
+	</thead>
+	<tbody>
+        {% if object_list %}
+        {% for carrera in object_list %}
+        <tr>
+            <td>{{carrera.id}}</td>
+            <td>{{carrera.Nombre}}</td>
+            <td>{{carrera.Director}}</td>
+            <td>{{carrera.facultad_id}}</td>
+
+
+            <td>
+                <a class="btn btn-warning" href="{% url 'carrera:update_Carrera' carrera.id %}" >Editar</a>
+                <a class="btn btn-danger" href="{% url 'carrera:delete_Carrera'  carrera.id %}">Eliminar</a>
+
+            </td>
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registros de carreras</h1>
+        {% endif %}
+
+	</tbody>
+</table>
+</div>
+</div>
+{% endblock%}

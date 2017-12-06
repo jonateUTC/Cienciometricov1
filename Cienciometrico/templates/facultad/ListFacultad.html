@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<br>
+<br>
+
+<div class="wow fadeInUp animated" style="background: #AFB5B9; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
+     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">FACULTAD</span> </h2>
+        </div>
+    <br>
+<div class="container">
+<a href="{% url 'Facultad:create_Facultad' %}" class="btn btn-primary  pull-right "><i class="glyphicon glyphicon-plus"></i> Nuevo facultad</a>
+    </div>
+<br>
+<div align="center" class="row" style="">
+<div class="table-responsive">
+<table class="table table-bordered" style="text-align:center; width:60%; ">
+	<thead >
+		<tr>
+			<td>#</td>
+			<td>Nombre Facultad</td>
+			<td>Decano</td>
+			<td>Campus</td>
+            <td>Acciones</td>
+		</tr>
+
+	</thead>
+	<tbody>
+        {% if object_list %}
+        {% for facultad in object_list %}
+        <tr>
+            <td>{{facultad.id}}</td>
+            <td>{{facultad.Nombre}}</td>
+            <td>{{facultad.Decano}}</td>
+            <td>{{facultad.campus_id}}</td>
+
+
+            <td>
+                <a class="btn btn-warning" href="{% url 'Facultad:update_Facultad' facultad.id %}" >Editar</a>
+                <a class="btn btn-danger" href="{% url 'Facultad:delete_Facultad'  facultad.id %}">Eliminar</a>
+
+            </td>
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registros de facultad</h1>
+        {% endif %}
+
+	</tbody>
+</table>
+</div>
+</div>
+{% endblock%}
