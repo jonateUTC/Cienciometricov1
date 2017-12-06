@@ -21,4 +21,6 @@ urlpatterns = [
     url(r'^pais/', include('apps.pais.urls', namespace="pais")),
     url(r'^zona/', include('apps.zona.urls', namespace="zona")),
     url(r'^provincia/', include('apps.provincia.urls', namespace="provincia")),
+    url(r'^canton/', include('apps.canton.urls', namespace="canton")),
+    url(r'^universidad/', include('apps.universidad.urls', namespace="universidad")),
 ]
