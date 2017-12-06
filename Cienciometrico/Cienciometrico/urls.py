@@ -23,4 +23,6 @@ urlpatterns = [
     url(r'^provincia/', include('apps.provincia.urls', namespace="provincia")),
     url(r'^canton/', include('apps.canton.urls', namespace="canton")),
     url(r'^universidad/', include('apps.universidad.urls', namespace="universidad")),
+    url(r'^Carrera/', include('apps.carrera.urls', namespace="carrera")),
+    url(r'^Facultad/', include('apps.facultad.urls', namespace="Facultad")),
 ]
