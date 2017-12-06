@@ -9,12 +9,13 @@
 {% block navbar %}
 <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px; background:#E7F1F0; " id="mySidebar">
   <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
-    <a href="{% url 'pais:pais_listar' %}"  class=" w3-bar-item w3-button">País</a>
-    <a href="{% url 'zona:zona_listar' %}"  class="w3-bar-item w3-button">Zona</a>
-    <a href="{% url 'provincia:provincia_listar' %}" class="w3-bar-item w3-button">Provincia</a>
-    <a href="{% url 'canton:canton_listar' %}" id="uno" class="w3-bar-item w3-button">Cantón</a>
-    <a href="{% url 'universidad:universidad_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/university.png' %}"> Universidad</a>
-    <a href="{% url 'campus:campus_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/campus.png' %}">  Campus</a>
+    <a href="{% url 'pais:pais_listar' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> País</a>
+    <a href="{% url 'zona:zona_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/iconos-zona.png' %}"> Zona</a>
+    <a href="{% url 'provincia:provincia_listar' %}"class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/country.png' %}"> Provincia</a>
+    <a href="{% url 'canton:canton_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/city.png' %}"> Cantón</a>
+    <a href="{% url 'universidad:universidad_listar' %}"  class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/university.png' %}"> Universidad</a>
+    <a href="{% url 'campus:campus_listar' %}" id="uno" class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/campus.png' %}"> Campus</a>
+
 </div>
 
 <div class="w3-main" style="margin-left:200px; ">
@@ -26,11 +27,11 @@
 {% block content %}
 
 <div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
-     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">CANTONES</span> </h2>
+     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">CAMPUS</span> </h2>
         </div>
     <br>
 <div class="container">
-<a href="{% url 'canton:canton_crear' %}" class="btn btn-primary  pull-right "><i class="glyphicon glyphicon-plus"></i> Nuevo Cantón</a>
+<a href="{% url 'campus:campus_crear' %}" class="btn btn-primary  pull-right "><i class="glyphicon glyphicon-plus"></i> Nuevo Campus</a>
     </div>
 <br>
 <div class="container" align="center">
@@ -41,26 +42,28 @@
 			<td>#</td>
 			<td>Nombre</td>
             <td>Provincia</td>
-			<td>Acciones</td>
+			<td>Universidad</td>
+            <td>Acciones</td>
 		</tr>
 		
 	</thead>
 	<tbody>
         {% if object_list %}
-        {% for canton in object_list %}
+        {% for campus in object_list %}
         <tr>
-            <td>{{canton.id}}</td>
-            <td>{{canton.Nombre}}</td>
-            <td>{{ canton.provincia.Nombre }}</td>
+            <td>{{campus.id}}</td>
+            <td>{{campus.Nombre}}</td>
+            <td>{{campus.provincia.Nombre}}</td>
+            <td>{{campus.universidad.Nombre }}</td>
             <td>
-                 <a class="btn btn-warning" href="{% url 'canton:canton_editar' canton.id %}"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
-                <a class="btn btn-danger" href="{% url 'canton:canton_eliminar' canton.id %}"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+                 <a class="btn btn-warning" href="{% url 'campus:campus_update' campus.id %}"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                <a class="btn btn-danger" href="{% url 'campus:campus_delete' campus.id %}"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
             </td>
         </tr>
         {% endfor %}
 
         {% else %}
-        <h1>No hay registros de Cantones</h1>
+        <h1>No hay registros de Campus</h1>
         {% endif %}
 
 	</tbody>

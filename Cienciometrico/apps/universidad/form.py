@@ -20,6 +20,6 @@ class UniversidadForm(forms.ModelForm):
         widgets={
             'Nombre':forms.TextInput(attrs={'class':'form-control'}),
             'Rector': forms.TextInput(attrs={'class':'form-control'}),
-            'pais': forms.Select(attrs={'class': 'form-control', 'id':'pais'}),
+            'pais': forms.Select(attrs={'class': 'form-control', 'id':'pais', 'onchange':'myFunction()'}),
             'zona': forms.Select(attrs={'class': 'form-control', 'id':'zona'}),
         }

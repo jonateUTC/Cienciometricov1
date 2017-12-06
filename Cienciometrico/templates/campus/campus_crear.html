@@ -5,9 +5,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <link rel="stylesheet" href="static/css/animate.min.css">
-
-    <script>
-        function myFunction() {
+<script>
+        function zonapais() {
             document.getElementById("zona").innerHTML = "";
             var v=document.getElementById("pais").value;
             var option = document.createElement("option");
@@ -28,7 +27,27 @@
         }
 
     </script>
+    <script>
+         function zonaprovincia() {
+            document.getElementById("prov").innerHTML = "";
+            var pz=document.getElementById("zona").value;
 
+            var opt = document.createElement("option");
+            opt.text = "--SELECCIONE--";
+            document.getElementById("prov").add(opt);
+            {% for pro in  Provincia %}
+                var id_zona={{pro.zona.id}}
+                if(pz==id_zona){
+
+                    var opti = document.createElement("option");
+                    opti.value = "{{pro.pk}}";
+                    opti.text = "{{pro.Nombre}}";
+                    document.getElementById("prov").appendChild(opti);
+                }
+            {% endfor %}
+
+        }
+    </script>
 {% endblock %}
 {% block navbar %}
 <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px; background:#E7F1F0; " id="mySidebar">
@@ -37,8 +56,8 @@
     <a href="{% url 'zona:zona_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/iconos-zona.png' %}"> Zona</a>
     <a href="{% url 'provincia:provincia_listar' %}"class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/country.png' %}"> Provincia</a>
     <a href="{% url 'canton:canton_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/city.png' %}"> Cantón</a>
-    <a href="{% url 'universidad:universidad_listar' %}" id="uno" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/university.png' %}"> Universidad</a>
-    <a href="{% url 'campus:campus_listar' %}" class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/campus.png' %}"> Campus</a>
+    <a href="{% url 'universidad:universidad_listar' %}"  class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/university.png' %}"> Universidad</a>
+    <a href="{% url 'campus:campus_listar' %}" id="uno" class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/campus.png' %}"> Campus</a>
 
 </div>
 
@@ -48,51 +67,68 @@
 
 </div>
 {% endblock %}
-{% block content %}
+    {% block content %}
 
 <form method="post">
     {% csrf_token %}
-
     <div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
-     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-plus"></span> NUEVA <span style="color:#FC9C30">UNIVERSIDAD</span> </h2>
+     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-plus"></span> NUEVO <span style="color:#FC9C30">CAMPUS</span> </h2>
         </div>
     <br>
     <div class="container">
 		<div class="col-md-9 col-md-offset-2">
-	<a href="{% url 'universidad:universidad_listar' %}" class="btn btn-primary  pull-right"><i class="glyphicon glyphicon-eye-open"></i> Ver Todos</a>
+	<a href="{% url 'campus:campus_listar' %}" class="btn btn-primary  pull-right"><i class="glyphicon glyphicon-eye-open"></i> Ver Todos</a>
 		</div>
 		</div>
-    <br>
-    <div class="row">
+	 <div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="form-group">
-                <label>Pais</label>
-               {{form.pais}}
+                <label>País</label>
+                <select class="form-control" id="pais" onchange="zonapais()">
+                    <option>--Seleccione--</option>
+                    {% for p in  Pais%}
+                    <option value="{{ p.pk }}">{{p.Nombre}}</option>
+
+                    {% endfor %}
+                </select>
                 </div>
 		</div>
 	</div>
-    <div class="row">
+	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="form-group">
                 <label>Zona</label>
-               {{form.zona}}
+                <select class="form-control" id="zona" onchange="zonaprovincia()">
+                    <option>--Seleccione--</option>
+
+                </select>
             </div>
 		</div>
 	</div>
-
     <div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="form-group">
-				<label>Nombre</label>
-				{{form.Nombre}}
+                <label>Provincia</label>
+                <select class="form-control" id="prov"  name="provincia">
+                    <option>--Seleccione--</option>
+
+                </select>
+            </div>
+		</div>
+	</div>
+  	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label for="{{form.universidad.Nombre}}">{{form.universidad.label}}</label>
+                {{form.universidad}}
 			</div>
 		</div>
 	</div>
     <div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="form-group">
-				<label>Rector</label>
-				{{form.Rector}}
+				<label>Nombre</label>
+				<input class="form-control" type="text" name="Nombre">
 			</div>
 		</div>
 	</div>
@@ -106,5 +142,4 @@
 	</div>
 
 </form>
-	</div>
 {% endblock %}

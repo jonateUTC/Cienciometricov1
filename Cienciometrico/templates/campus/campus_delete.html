@@ -7,8 +7,8 @@
     <a href="{% url 'zona:zona_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/iconos-zona.png' %}"> Zona</a>
     <a href="{% url 'provincia:provincia_listar' %}"class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/country.png' %}"> Provincia</a>
     <a href="{% url 'canton:canton_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/city.png' %}"> Cantón</a>
-    <a href="{% url 'universidad:universidad_listar' %}" id="uno" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/university.png' %}"> Universidad</a>
-    <a href="{% url 'campus:campus_listar' %}" class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/campus.png' %}"> Campus</a>
+    <a href="{% url 'universidad:universidad_listar' %}"  class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/university.png' %}"> Universidad</a>
+    <a href="{% url 'campus:campus_listar' %}" id="uno" class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/campus.png' %}"> Campus</a>
 
 </div>
 
@@ -24,6 +24,6 @@
     {% csrf_token %}
     <h1>¿Desea eliminar el registro de {{object.Nombre}}?</h1>
     <button class="btn btn-danger" type="submit">Si, eliminar</button>
-    <a class="btn btn-default" href="{% url 'universidad:universidad_listar' %}">Cancelar</a>
+    <a class="btn btn-default" href="{% url 'campus:campus_listar' %}">Cancelar</a>
 </form>
 {% endblock %}
