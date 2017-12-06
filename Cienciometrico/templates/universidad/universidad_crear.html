@@ -28,27 +28,7 @@
         }
 
     </script>
-    <script>
-         function myFunction5() {
-            document.getElementById("prov").innerHTML = "";
-            var pz=document.getElementById("zona").value;
 
-            var opt = document.createElement("option");
-            opt.text = "--SELECCIONE--";
-            document.getElementById("prov").add(opt);
-            {% for pro in  Provincia %}
-                var id_zona={{pro.zona.id}}
-                if(pz==id_zona){
-
-                    var opti = document.createElement("option");
-                    opti.value = "{{pro.pk}}";
-                    opti.text = "{{pro.Nombre}}";
-                    document.getElementById("prov").appendChild(opti);
-                }
-            {% endfor %}
-
-        }
-    </script>
 
 {% endblock %}
 {% block navbar %}
@@ -100,17 +80,7 @@
     <div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="form-group">
-                <select class="form-control" id="zona" name="zona" onchange="myFunction5()">
-                    <option>--Seleccione--</option>
-
-                </select>
-            </div>
-		</div>
-	</div>
-    <div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="form-group">
-                <select class="form-control" id="prov" >
+                <select class="form-control" id="zona" name="zona" >
                     <option>--Seleccione--</option>
 
                 </select>
