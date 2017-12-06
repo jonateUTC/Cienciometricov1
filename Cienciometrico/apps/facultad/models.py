@@ -10,3 +10,6 @@ class facultad (models.Model):
     Nombre=models.CharField(max_length=250)
     Decano =models.CharField(max_length=250)
     campus=models.ForeignKey(campus,null=True ,blank=True ,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{}'.format(self.Nombre)

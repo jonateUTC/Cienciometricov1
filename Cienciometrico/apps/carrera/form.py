@@ -17,5 +17,5 @@ class CarreraForm (forms.ModelForm):
         widgets = {
             'Nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'Director': forms.TextInput(attrs={'class': 'form-control'}),
-            'facultad':forms.NumberInput(attrs={'class': 'form-control'}),
+            'facultad':forms.Select(attrs={'class': 'form-control','id':'facultad'}),
         }

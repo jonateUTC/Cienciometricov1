@@ -21,5 +21,5 @@ class CantonUpdate(UpdateView):
     success_url = reverse_lazy('canton:canton_listar')
 class CantonDelete(DeleteView):
     model = canton
-    template_name = 'canton/canton_eliminar.html'
+    template_name = 'canton/canton_delete.html'
     success_url = reverse_lazy('canton:canton_listar')

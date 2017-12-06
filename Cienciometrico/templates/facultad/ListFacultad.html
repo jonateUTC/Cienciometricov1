@@ -1,10 +1,26 @@
-{% extends 'base/base.html' %}
+{% extends 'base1/inicio.html'%}
+{% load staticfiles %}
+{% block navbar %}
+<div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px; background:#E7F1F0; " id="mySidebar">
+  <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+    <a href="{% url 'pais:pais_listar' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> País</a>
+    <a href="{% url 'zona:zona_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/iconos-zona.png' %}"> Zona</a>
+    <a href="{% url 'provincia:provincia_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/country.png' %}"> Provincia</a>
+    <a href="{% url 'canton:canton_listar' %}"  class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/city.png' %}"> Cantón</a>
+    <a href="{% url 'universidad:universidad_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/university.png' %}"> Universidad</a>
+    <a href="{% url 'campus:campus_listar' %}" class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/campus.png' %}"> Campus</a>
+	<a href="{% url 'Facultad:lista_Facultad' %}" id="uno" class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/facultad5.png' %}"> Facultad</a>
+    <a href="{% url 'carrera:lista_Carrera' %}"  class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/carrera.png' %}"> Carrera</a>
+</div>
 
+<div class="w3-main" style="margin-left:200px; ">
+<div class="w3-teal"  >
+  <button class="w3-button w3-teal w3-xlarge w3-hide-large"  onclick="w3_open()">&#9776;</button>
+
+</div>
+{% endblock %}
 {% block content %}
-<br>
-<br>
-
-<div class="wow fadeInUp animated" style="background: #AFB5B9; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
+<div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
      <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">FACULTAD</span> </h2>
         </div>
     <br>
@@ -12,9 +28,8 @@
 <a href="{% url 'Facultad:create_Facultad' %}" class="btn btn-primary  pull-right "><i class="glyphicon glyphicon-plus"></i> Nuevo facultad</a>
     </div>
 <br>
-<div align="center" class="row" style="">
-<div class="table-responsive">
-<table class="table table-bordered" style="text-align:center; width:60%; ">
+<div class="container" align="center">
+<table class="table table-bordered" style="text-align:center; ">
 	<thead >
 		<tr>
 			<td>#</td>
@@ -32,12 +47,12 @@
             <td>{{facultad.id}}</td>
             <td>{{facultad.Nombre}}</td>
             <td>{{facultad.Decano}}</td>
-            <td>{{facultad.campus_id}}</td>
+            <td>{{facultad.campus.Nombre}}</td>
 
 
             <td>
-                <a class="btn btn-warning" href="{% url 'Facultad:update_Facultad' facultad.id %}" >Editar</a>
-                <a class="btn btn-danger" href="{% url 'Facultad:delete_Facultad'  facultad.id %}">Eliminar</a>
+                <a class="btn btn-warning" href="{% url 'Facultad:update_Facultad' facultad.id %}" ><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                <a class="btn btn-danger" href="{% url 'Facultad:delete_Facultad'  facultad.id %}"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
 
             </td>
         </tr>
@@ -49,6 +64,6 @@
 
 	</tbody>
 </table>
-</div>
+
 </div>
 {% endblock%}

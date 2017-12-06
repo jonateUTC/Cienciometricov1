@@ -17,5 +17,5 @@ class FacultadForm (forms.ModelForm):
         widgets = {
             'Nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'Decano': forms.TextInput(attrs={'class': 'form-control'}),
-            'campus':forms.NumberInput(attrs={'class': 'form-control'}),
+            'campus':forms.Select(attrs={'class': 'form-control','id':'campus'}),
         }
