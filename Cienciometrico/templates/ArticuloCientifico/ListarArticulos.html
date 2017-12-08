@@ -1,0 +1,61 @@
+{% extends 'base1/inicio.html'%}
+
+{% block content %}
+<br>
+<br>
+
+<div class="wow fadeInUp animated" style="background: #AFB5B9; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
+     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">ARTÍCULOS CIENTÍFICOS</span> </h2>
+        </div>
+    <br>
+<div class="container">
+<a href="{% url 'articulosCientificos:articulos' %}" class="btn btn-primary  pull-right "><i class="glyphicon glyphicon-plus"></i> Nuevo Artículo Científico</a>
+    </div>
+<br>
+<div align="center" class="container">
+<table class="table table-bordered" style="text-align:center; ">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Nombre</td>
+			<td>Número</td>
+			<td>Estado</td>
+			<td>Año</td>
+			<td>ISNN</td>
+			<td>Base de Datos</td>
+            <td>URL</td>
+            <td>Fecha Publicación</td>
+            <td>Investigador</td>
+            <td>Acciones</td>
+		</tr>
+		
+	</thead>
+	<tbody>
+        {% if object_list %}
+        {% for articulos_cientificos in object_list %}
+        <tr>
+            <td>{{articulos_cientificos.id}}</td>
+            <td>{{articulos_cientificos.Nombre}}</td>
+            <td>{{articulos_cientificos.Numero}}</td>
+            <td>{{articulos_cientificos.Estado}}</td>
+            <td>{{articulos_cientificos.Anio}}</td>
+            <td>{{articulos_cientificos.ISSN }}</td>
+            <td>{{articulos_cientificos.Base_Datos }}</td>
+            <td>{{articulos_cientificos.Url}}</td>
+            <td>{{articulos_cientificos.Fecha_Publicacion }}</td>
+            <td>{{articulos_cientificos.investigador_id }}</td>
+            <td>
+                <a class="btn btn-warning" href="{% url 'articulosCientificos:update_articulo'  articulos_cientificos.id %}" >Editar</a>
+                <a class="btn btn-danger" href="{% url 'articulosCientificos:delete_articulo'  articulos_cientificos.id %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registros de articulos_cientificoss</h1>
+        {% endif %}
+
+	</tbody>
+</table>
+</div>
+{% endblock%}
