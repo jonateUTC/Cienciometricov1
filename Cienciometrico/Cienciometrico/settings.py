@@ -46,9 +46,14 @@ INSTALLED_APPS = [
     'apps.campus',
     'apps.facultad',
     'apps.carrera',
+<<<<<<< HEAD
     'apps.Investigador',
     'apps.Articulos_Cientificos',
 
+=======
+    'apps.investigaciones',
+    'apps.datosprofesionales'
+>>>>>>> 10bd1cb98eb1060c60eee22ed638cd7f329cd87c
 
 ]
 
@@ -75,6 +80,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -138,6 +144,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS=(os.path.join(BASE_DIR,'static'),)
 
+<<<<<<< HEAD
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
     messages.INFO: 'alert-info',
@@ -145,3 +152,7 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+=======
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+>>>>>>> 10bd1cb98eb1060c60eee22ed638cd7f329cd87c
