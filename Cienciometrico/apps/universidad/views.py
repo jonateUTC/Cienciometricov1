@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse, HttpResponseRedirect, redirect
+from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.core.urlresolvers import reverse_lazy
 from apps.universidad.form import  UniversidadForm
 from apps.universidad.models import universidad

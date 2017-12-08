@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^pais/', include('apps.pais.urls', namespace="pais")),
@@ -26,4 +27,9 @@ urlpatterns = [
     url(r'^Carrera/', include('apps.carrera.urls', namespace="carrera")),
     url(r'^Facultad/', include('apps.facultad.urls', namespace="Facultad")),
     url(r'^campus/', include('apps.campus.urls', namespace="campus")),
+    url(r'^investigacion/', include('apps.investigaciones.urls', namespace="investigacion")),
+    url(r'^datosprofesionales/', include('apps.datosprofesionales.urls', namespace="datosprofe")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
