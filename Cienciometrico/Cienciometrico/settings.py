@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,10 +46,20 @@ INSTALLED_APPS = [
     'apps.campus',
     'apps.facultad',
     'apps.carrera',
+<<<<<<< HEAD
+    'apps.Investigador',
+    'apps.Articulos_Cientificos',
+
+=======
     'apps.investigaciones',
+<<<<<<< HEAD
     'apps.datosprofesionales',
     'apps.otrasinvestigaciones',
     'apps.participacioneventos',
+=======
+    'apps.datosprofesionales'
+>>>>>>> 10bd1cb98eb1060c60eee22ed638cd7f329cd87c
+>>>>>>> 2e3097955f56bd42590ea866bc3406b14c891db1
 
 ]
 
@@ -90,9 +101,9 @@ WSGI_APPLICATION = 'Cienciometrico.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cienciometrico',
+        'NAME': 'cienciometricov',
         'USER': 'postgres',
-        'PASSWORD': '1727500363',
+        'PASSWORD': '1724542103',
         'HOST': 'localhost',
         'PORT': 5432,
     }
@@ -139,5 +150,15 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS=(os.path.join(BASE_DIR,'static'),)
 
+<<<<<<< HEAD
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
+=======
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+>>>>>>> 10bd1cb98eb1060c60eee22ed638cd7f329cd87c
