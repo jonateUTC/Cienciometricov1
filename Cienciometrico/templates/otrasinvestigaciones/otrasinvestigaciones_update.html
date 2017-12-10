@@ -1,0 +1,33 @@
+{% extends 'base1/inicio2.html' %}
+{% load staticfiles %}
+{% block item5 %}
+    <a href="{% url 'datosprofe:datosprofe_listar' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Datos Profesionales</a>
+    {% endblock %}
+    {% block item1 %}
+    <a href="{% url 'otrainvestigacion:otrasinvestigaciones_lis' %}" id="uno" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/iconos-zona.png' %}"> Otras Investigaciones</a>
+    {% endblock %}
+{% block content %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
+     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-plus"></span> ACTUALIZAR <span style="color:#FC9C30">OTRA INVESTIGACIÓN</span> </h2>
+        </div>
+    <br>
+
+    <div class="row">
+		<div class="col-md-8 col-md-offset-2">
+            {{ form.as_p }}
+        </div>
+    </div>
+    <div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<button class="btn btn-primary "type="submit">Guardar</button>
+                <a href="{% url 'otrainvestigacion:otrasinvestigaciones_lis' %}" class="btn btn-danger"type="button">Cancelar</a>
+			</div>
+		</div>
+	</div>
+  </form>
+
+
+{% endblock %}

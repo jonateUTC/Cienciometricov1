@@ -1,0 +1,63 @@
+{% extends 'base1/inicio2.html'%}
+{% load staticfiles %}
+{% block item5 %}
+    <a href="{% url 'datosprofe:datosprofe_listar' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Datos Profesionales</a>
+    {% endblock %}
+    {% block item1 %}
+    <a href="{% url 'otrainvestigacion:otrasinvestigaciones_lis' %}" id="uno" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/iconos-zona.png' %}"> Otras Investigaciones</a>
+    {% endblock %}
+{% block content %}
+<div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
+     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">OTRAS INVESTIGACIONES</span> </h2>
+        </div>
+    <br>
+<div class="container">
+<a href="{% url 'otrainvestigacion:otrasinvestigaciones_crear' %}" class="btn btn-primary  pull-right "><i class="glyphicon glyphicon-plus"></i> Nueva Otra Investigación</a>
+    </div>
+<br>
+<div class="container" align="center" >
+<table class="table table-bordered" style="text-align:center;">
+	<thead >
+		<tr>
+			<td>#</td>
+			<td>Título</td>
+			<td>Palabras Claves</td>
+            <td>Resumen</td>
+			<td>Editor</td>
+            <td>Link</td>
+            <td>Acciones</td>
+		</tr>
+
+	</thead>
+	<tbody>
+        {% if object_list %}
+        {% for otrasinvestigaciones in object_list %}
+        <tr>
+            <td>{{otrasinvestigaciones.id}}</td>
+            <td>{{otrasinvestigaciones.Titulo}}</td>
+            <td>{{otrasinvestigaciones.Palabras_Clave}}</td>
+            <td>
+                <li>
+                    <a href="{{ otrasinvestigaciones.Resumen.url }}">{{ otrasinvestigaciones.Resumen.name }}</a>
+                    <small>(Uploaded at: {{ otrasinvestigaciones.uploaded_at }})</small>
+                </li>
+            </td>
+            <td>{{otrasinvestigaciones.Editor}}</td>
+            <td>{{otrasinvestigaciones.Url}}</td>
+            <td>
+                <a class="btn btn-warning" href="{% url 'otrainvestigacion:otrasinvestigaciones_update' otrasinvestigaciones.id %}" ><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                <a class="btn btn-danger" href="{% url 'otrainvestigacion:otrasinvestigaciones_eliminar' otrasinvestigaciones.id %}"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+
+            </td>
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registros de Otras Investigaciones</h1>
+        {% endif %}
+
+	</tbody>
+</table>
+
+</div>
+{% endblock%}

@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'apps.facultad',
     'apps.carrera',
     'apps.investigaciones',
-    'apps.datosprofesionales'
+    'apps.datosprofesionales',
+    'apps.otrasinvestigaciones',
+    'apps.participacioneventos',
 
 ]
 

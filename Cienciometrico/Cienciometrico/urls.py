@@ -29,6 +29,8 @@ urlpatterns = [
     url(r'^campus/', include('apps.campus.urls', namespace="campus")),
     url(r'^investigacion/', include('apps.investigaciones.urls', namespace="investigacion")),
     url(r'^datosprofesionales/', include('apps.datosprofesionales.urls', namespace="datosprofe")),
+    url(r'^otrainvestigacion/', include('apps.otrasinvestigaciones.urls', namespace="otrainvestigacion")),
+    url(r'^participacioneventos/', include('apps.participacioneventos.urls', namespace="partevento")),
 ]
 
 if settings.DEBUG:
