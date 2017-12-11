@@ -3,12 +3,6 @@
  {% block item5 %}
     <a href="{% url 'datosprofe:datosprofe_listar' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Datos Profesionales</a>
     {% endblock %}
-    {% block item %}
-    <a href="{% url 'investigacion:investigaciones_lis' %}" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Investigaciones</a>
-    {% endblock %}
-    {% block itemArti %}
-    <a href="{% url 'articulosCientificos:ListaArticulo' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/articuloCient.png' %}">Artículos Científicos</a>
-    {% endblock %}
     {% block itemForAcad %}
     <a href="{% url 'FormacionAcademica:lista_Formacion_Academica' %}" id="uno" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/FormaAcad.png' %}">Formación Académica</a>
     {% endblock %}

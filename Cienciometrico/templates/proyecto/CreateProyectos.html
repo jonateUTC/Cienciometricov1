@@ -1,0 +1,32 @@
+{% extends 'base1/inicio2.html' %}
+{% load staticfiles %}
+  {% block item5 %}
+    <a href="{% url 'datosprofe:datosprofe_listar' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Datos Profesionales</a>
+    {% endblock %}
+     {% block itemProyecto %}
+    <a href="{% url 'proyectos:lista_Proyectos' %}" id="uno" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/project.png' %}">Proyectos</a>
+    {% endblock %}
+{% block content %}
+<div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;">
+     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> NUEVOS <span style="color:#FC9C30">PROYECTOS</span> </h2>
+        </div>
+    <br>
+ <form method="POST">
+        {% csrf_token %}
+
+   {{form.as_p}}
+        <div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+                <button type="submit"   class="btn btn-primary" >Guardar</button>
+            </div>
+		</div>
+        </div>
+	</div>
+
+
+</form>
+
+{% endblock %}
+</body>
+</html>

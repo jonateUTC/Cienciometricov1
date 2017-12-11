@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'apps.Evento',
     'apps.otrasinvestigaciones',
     'apps.participacioneventos',
+    'apps.Proyectos',
 
 ]
 

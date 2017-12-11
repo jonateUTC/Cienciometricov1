@@ -1,0 +1,66 @@
+{% extends 'base1/inicio2.html' %}
+{% load staticfiles %}
+  {% block item5 %}
+    <a href="{% url 'datosprofe:datosprofe_listar' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Datos Profesionales</a>
+    {% endblock %}
+     {% block itemProyecto %}
+    <a href="{% url 'proyectos:lista_Proyectos' %}" id="uno" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/project.png' %}">Proyectos</a>
+    {% endblock %}
+{% block content %}
+
+<div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;">
+     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">PROYECTOS</span> </h2>
+        </div>
+    <br>
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+<a href="{% url 'proyectos:create_Proyectos' %}" class="btn btn-primary  pull-right "><i class="glyphicon glyphicon-plus"></i> Nuevos Proyectos</a>
+    </div>
+     </div>
+<br>
+<div align="center" class="row" style="">
+<div class="table-responsive">
+<table class="table table-bordered" style="text-align:center; width:60%; ">
+	<thead >
+		<tr>
+			<td>#</td>
+			<td>Titulo</td>
+            <td>Investigador</td>
+            <td>Palabras Claves</td>
+			<td>Documento</td>
+			<td>Tipo de Proyecto</td>
+            <td>Acciones</td>
+		</tr>
+
+	</thead>
+	<tbody>
+        {% if object_list %}
+        {% for proyectos in object_list %}
+        <tr>
+            <td>{{proyectos.id}}</td>
+            <td>{{proyectos.Titulo}}</td>
+            <td>{{proyectos.investigador_id}}</td>
+            <td>{{proyectos.Palabras_Clave}}</td>
+            <td>{{proyectos.Documento}}</td>
+             <td>{{proyectos.Tipo_Proyecto}}</td>
+
+
+
+
+            <td>
+                <a class="btn btn-warning" href="{% url 'proyectos:update_Proyectos' proyectos.id %}" >Editar</a>
+                <a class="btn btn-danger" href="{% url 'proyectos:delete_Proyectos'  proyectos.id %}">Eliminar</a>
+
+            </td>
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registros de proyectoss</h1>
+        {% endif %}
+
+	</tbody>
+</table>
+</div>
+</div>
+{% endblock%}
