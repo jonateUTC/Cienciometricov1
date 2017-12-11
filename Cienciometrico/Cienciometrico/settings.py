@@ -49,10 +49,21 @@ INSTALLED_APPS = [
     'apps.Investigador',
     'apps.Articulos_Cientificos',
     'apps.investigaciones',
+<<<<<<< HEAD
     'apps.datosprofesionales',
     'apps.Formacion_Academica',
     'apps.Formacion_Complementaria',
     'apps.Evento',
+=======
+<<<<<<< HEAD
+    'apps.datosprofesionales',
+    'apps.otrasinvestigaciones',
+    'apps.participacioneventos',
+=======
+    'apps.datosprofesionales'
+>>>>>>> 10bd1cb98eb1060c60eee22ed638cd7f329cd87c
+>>>>>>> 2e3097955f56bd42590ea866bc3406b14c891db1
+>>>>>>> b5af94165b4b8d62083fbba626a011a21e2faad7
 
 ]
 

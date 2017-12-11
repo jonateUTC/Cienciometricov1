@@ -25,10 +25,10 @@
     <a href="{% url 'investigacion:investigaciones_lis' %}" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Investigaciones</a>
     {% endblock %}
     {% block item1 %}
-    <a href="" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/iconos-zona.png' %}"> Otras Investigaciones</a>
+    <a href="{% url 'otrainvestigacion:otrasinvestigaciones_lis' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/iconos-zona.png' %}"> Otras Investigaciones</a>
     {% endblock %}
     {% block item2 %}
-    <a href=""class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/country.png' %}"> Provincia</a>
+    <a href="{% url 'partevento:partevento_lis' %}"class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/country.png' %}"> Participación en Eventos</a>
     {% endblock %}
     {% block item3 %}
     <a href="" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/city.png' %}"> Cantón</a>

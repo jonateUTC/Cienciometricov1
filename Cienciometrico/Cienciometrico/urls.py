@@ -31,9 +31,18 @@ urlpatterns = [
     url(r'^articulo/', include('apps.Articulos_Cientificos.urls', namespace="articulosCientificos")),
     url(r'^investigacion/', include('apps.investigaciones.urls', namespace="investigacion")),
     url(r'^datosprofesionales/', include('apps.datosprofesionales.urls', namespace="datosprofe")),
+<<<<<<< HEAD
     url(r'^formacionAcad/', include('apps.Formacion_Academica.urls', namespace="FormacionAcademica")),
     url(r'^formacionComple/', include('apps.Formacion_Complementaria.urls', namespace="FormacionComplementaria")),
     url(r'^Evento/', include('apps.Evento.urls', namespace="evento")),
+=======
+<<<<<<< HEAD
+    url(r'^otrainvestigacion/', include('apps.otrasinvestigaciones.urls', namespace="otrainvestigacion")),
+    url(r'^participacioneventos/', include('apps.participacioneventos.urls', namespace="partevento")),
+=======
+>>>>>>> 10bd1cb98eb1060c60eee22ed638cd7f329cd87c
+>>>>>>> 2e3097955f56bd42590ea866bc3406b14c891db1
+>>>>>>> b5af94165b4b8d62083fbba626a011a21e2faad7
 ]
 
 if settings.DEBUG:

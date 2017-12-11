@@ -3,8 +3,8 @@
 {% block item5 %}
     <a href="{% url 'datosprofe:datosprofe_listar' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Datos Profesionales</a>
     {% endblock %}
-    {% block item %}
-    <a href="{% url 'investigacion:investigaciones_lis' %}" id="uno" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Investigaciones</a>
+    {% block item2 %}
+    <a href="{% url 'partevento:partevento_lis' %}"id="uno" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/country.png' %}"> Participación en Eventos</a>
     {% endblock %}
 {% block content %}
 <form method="post">
@@ -12,6 +12,6 @@
     <br><br>
     <h1>¿Desea eliminar el registro de {{object.Titulo}} ?</h1>
     <button class="btn btn-danger" type="submit">Si, eliminar</button>
-    <a class="btn btn-default" href="{% url 'investigacion:investigaciones_lis' %}">Cancelar</a>
+    <a class="btn btn-default" href="{% url 'partevento:partevento_lis' %}">Cancelar</a>
 </form>
 {% endblock %}
