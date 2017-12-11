@@ -1,0 +1,65 @@
+{% extends 'base1/inicio2.html'%}
+{% load staticfiles %}
+ {% block item5 %}
+    <a href="{% url 'datosprofe:datosprofe_listar' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Datos Profesionales</a>
+    {% endblock %}
+    {% block item %}
+    <a href="{% url 'investigacion:investigaciones_lis' %}" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Investigaciones</a>
+    {% endblock %}
+    {% block itemArti %}
+    <a href="{% url 'articulosCientificos:ListaArticulo' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/articuloCient.png' %}">Artículos Científicos</a>
+    {% endblock %}
+    {% block itemForAcad %}
+    <a href="{% url 'FormacionAcademica:lista_Formacion_Academica' %}" id="uno" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/FormaAcad.png' %}">Formación Académica</a>
+    {% endblock %}
+{% block content %}
+<div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
+     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">FORMACIÓN ACADÉMICA</span> </h2>
+        </div>
+    <br>
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+<a href="{% url 'FormacionAcademica:create_Formacion_Academica' %}" class="btn btn-primary  pull-right "><i class="glyphicon glyphicon-plus"></i> Nueva Formación Académica</a>
+    </div></div>
+<br>
+<div align="center" class="row" style="">
+<div class="table-responsive">
+<table class="table table-bordered" style="text-align:center; width:60%; ">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Titulo Adquirido</td>
+			<td>Fecha Finalizacion</td>
+			<td>Centro Estudios</td>
+            <td>Investigador</td>
+            <td>Acciones</td>
+		</tr>
+
+	</thead>
+	<tbody>
+        {% if object_list %}
+        {% for formacion_academica in object_list %}
+        <tr>
+            <td>{{formacion_academica.id}}</td>
+            <td>{{formacion_academica.Nivel_Estudios}}</td>
+            <td>{{formacion_academica.Fecha_Fin_Estudios}}</td>
+            <td>{{formacion_academica.Nombre_Centro_Estudios}}</td>
+            <td>{{formacion_academica.investigador}}</td>
+
+            <td>
+                <a class="btn btn-warning" href="{% url 'FormacionAcademica:update_Formacion_Academica' formacion_academica.id %}" ><span class="glyphicon glyphicon-pencil"></span>Editar</a>
+                <a class="btn btn-danger" href="{% url 'FormacionAcademica:delete_Formacion_Academica'  formacion_academica.id %}"><span class="glyphicon glyphicon-trash"></span>Eliminar</a>
+
+            </td>
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registros de Formación Académica</h1>
+        {% endif %}
+
+	</tbody>
+</table>
+</div>
+</div>
+{% endblock%}

@@ -33,6 +33,17 @@
     {% block item3 %}
     <a href="" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/city.png' %}"> Cantón</a>
     {% endblock %}
+    {% block itemArti %}
+    <a href="{% url 'articulosCientificos:ListaArticulo' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/articuloCient.png' %}">Artículos Científicos</a>
+    {% endblock %}
+    {% block itemForAcad %}
+    <a href="{% url 'FormacionAcademica:lista_Formacion_Academica' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/FormaAcad.png' %}">Formación Académica</a>
+    {% endblock %}
+     {% block itemForCompl %}
+    <a href="{% url 'FormacionComplementaria:lista_Formacion_Complementaria' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/FormaComp.png' %}">Formación Complementaria</a>
+    {% endblock %}
+
+
 
 </div>
 

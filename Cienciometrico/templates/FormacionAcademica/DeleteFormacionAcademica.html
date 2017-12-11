@@ -1,20 +1,24 @@
 {% extends 'base1/inicio2.html'%}
 {% load staticfiles %}
-  {% block item5 %}
+
+ {% block item5 %}
     <a href="{% url 'datosprofe:datosprofe_listar' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Datos Profesionales</a>
     {% endblock %}
     {% block item %}
     <a href="{% url 'investigacion:investigaciones_lis' %}" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Investigaciones</a>
     {% endblock %}
     {% block itemArti %}
-    <a href="{% url 'articulosCientificos:ListaArticulo' %}" id="uno"  class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/articuloCient.png' %}">Artículos Científicos</a>
+    <a href="{% url 'articulosCientificos:ListaArticulo' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/articuloCient.png' %}">Artículos Científicos</a>
+    {% endblock %}
+    {% block itemForAcad %}
+    <a href="{% url 'FormacionAcademica:lista_Formacion_Academica' %}" id="uno" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/FormaAcad.png' %}">Formación Académica</a>
     {% endblock %}
 {% block content %}
 <form method="post">
     {% csrf_token %}
     <br><br>
-    <h1>¿Desea eliminar el registro de {{object.Nombre}}?</h1>
+    <h1>¿Desea eliminar el registro de {{object.Nivel_Estudios}} ?</h1>
     <button class="btn btn-danger" type="submit">Si, eliminar</button>
-    <a class="btn btn-default" href="{% url 'articulosCientificos:ListaArticulo' %}">Cancelar</a>
+    <a class="btn btn-default" href="{% url 'FormacionAcademica:lista_Formacion_Academica' %}">Cancelar</a>
 </form>
 {% endblock %}

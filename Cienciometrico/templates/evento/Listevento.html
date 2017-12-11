@@ -1,0 +1,52 @@
+{% extends 'base1/inicio.html'%}
+
+{% block content %}
+<div class="wow fadeInUp animated"  style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
+     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">EVENTO</span> </h2>
+        </div>
+    <br>
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+<a href="{% url 'evento:create_Evento' %}" class="btn btn-primary  pull-right "><span class="glyphicon glyphicon-plus"></span> Nuevo Evento</a>
+    </div></div>
+<br>
+<div align="center" class="row" style="">
+<div class="table-responsive">
+<table class="table table-bordered" style="text-align:center; width:60%; ">
+	<thead >
+		<tr>
+			<td>#</td>
+			<td>Nombre evento</td>
+			<td>Lugar</td>
+			<td>Fecha</td>
+            <td>Acciones</td>
+		</tr>
+
+	</thead>
+	<tbody>
+        {% if object_list %}
+        {% for evento in object_list %}
+        <tr>
+            <td>{{evento.id}}</td>
+            <td>{{evento.Nombre}}</td>
+            <td>{{evento.Lugar}}</td>
+            <td>{{evento.Fecha}}</td>
+
+
+            <td>
+                <a class="btn btn-warning" href="{% url 'evento:update_Evento' evento.id %}"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
+                <a class="btn btn-danger" href="{% url 'evento:delete_Evento'  evento.id %}"><span class="glyphicon glyphicon-trash"></span>Eliminar</a>
+
+            </td>
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registros de eventos</h1>
+        {% endif %}
+
+	</tbody>
+</table>
+</div>
+</div>
+{% endblock%}

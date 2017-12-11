@@ -27,14 +27,13 @@ urlpatterns = [
     url(r'^Carrera/', include('apps.carrera.urls', namespace="carrera")),
     url(r'^Facultad/', include('apps.facultad.urls', namespace="Facultad")),
     url(r'^campus/', include('apps.campus.urls', namespace="campus")),
-<<<<<<< HEAD
     url(r'^investigador/', include('apps.Investigador.urls', namespace="investigador")),
     url(r'^articulo/', include('apps.Articulos_Cientificos.urls', namespace="articulosCientificos")),
-
-=======
     url(r'^investigacion/', include('apps.investigaciones.urls', namespace="investigacion")),
     url(r'^datosprofesionales/', include('apps.datosprofesionales.urls', namespace="datosprofe")),
->>>>>>> 10bd1cb98eb1060c60eee22ed638cd7f329cd87c
+    url(r'^formacionAcad/', include('apps.Formacion_Academica.urls', namespace="FormacionAcademica")),
+    url(r'^formacionComple/', include('apps.Formacion_Complementaria.urls', namespace="FormacionComplementaria")),
+    url(r'^Evento/', include('apps.Evento.urls', namespace="evento")),
 ]
 
 if settings.DEBUG:

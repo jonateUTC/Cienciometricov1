@@ -1,0 +1,66 @@
+{% extends 'base1/inicio.html'%}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% block extrastatic %}
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="static/css/animate.min.css">
+{% endblock %}
+</head>
+<body>
+{% block content %}
+ <form method="post">
+        {% csrf_token %}
+	   <div class="wow fadeInUp animated"  style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;">
+     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-plus"></span> NUEVO <span style="color:#FC9C30">EVENTO</span> </h2>
+        </div>
+    <br>
+      <div class="row">
+		<div class="col-md-8 col-md-offset-2">
+	<a href="{% url 'evento:lista_Evento' %}" class="btn btn-primary  pull-right"> <span class="glyphicon glyphicon-eye-open"></span> Ver Todos</a>
+		</div>
+		</div>
+   <div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label>Nombre de Evento </label>
+				<input class="form-control" type="text" name="Nombre">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label >Lugar</label>
+				<input class="form-control" type="text" name="Lugar">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label >Facultad</label>
+				<input class="form-control" type="date" name="Fecha">
+			</div>
+		</div>
+	</div>
+
+
+        <div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+                <button type="submit"   class="btn btn-primary" >Guardar</button>
+            </div>
+		</div>
+        </div>
+	</div>
+
+
+</form>
+
+{% endblock %}
+</body>
+</html>

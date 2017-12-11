@@ -1,20 +1,24 @@
-{% extends 'base1/inicio.html'%}
-{% load staticfiles %}
-{% block extrastatic %}
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   <link rel="stylesheet" href="static/css/animate.min.css">
-{% endblock %}
+{% extends 'base1/inicio2.html'%}
+ {% load staticfiles %}
+    {% block item5 %}
+    <a href="{% url 'datosprofe:datosprofe_listar' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Datos Profesionales</a>
+    {% endblock %}
+    {% block item %}
+    <a href="{% url 'investigacion:investigaciones_lis' %}" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Investigaciones</a>
+    {% endblock %}
+    {% block itemArti %}
+    <a href="{% url 'articulosCientificos:ListaArticulo' %}" id="uno"  class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/articuloCient.png' %}">Artículos Científicos</a>
+    {% endblock %}
+
 {% block content %}
-<br><br>
+<div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
+     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> NUEVOS <span style="color:#FC9C30">ARTÍCULOS CIENTÍFICOS</span> </h2>
+        </div>
+<br>
 
   <form method="post" >
       {% csrf_token %}
- <div class="wow fadeInUp animated" style="background: #AFB5B9; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
-     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-plus"></span> NUEVO <span style="color:#FC9C30">ARTÍCULO CIENTÍFICO</span> </h2>
-        </div>
-    <br>
+
       <div class="row">
 		<div class="col-md-9 col-md-offset-2">
 	<a href="{% url 'articulosCientificos:ListaArticulo' %}" class="btn btn-primary  pull-right"><i class="glyphicon glyphicon-eye-open"></i> Ver Todos</a>
