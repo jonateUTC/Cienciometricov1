@@ -1,28 +1,32 @@
 from django import forms
 
 from apps.Proyectos.models import proyecto
-class ProyectoForm(forms.ModelForm):
+
+
+class DocumentForm(forms.ModelForm):
     class Meta:
         model = proyecto
         fields = [
             'Titulo',
-            'Palabras_Clave',
+            'Palabras_Claves',
             'Documentos',
-            'Tipo_Proyecto',
+            'Tipo',
             'investigador',
-            
+
         ]
         labels = {
             'Titulo':'Título',
-            'Palabras_Clave':'Palabras Clave',
+            'Palabras_Claves':'Palabras Clave',
             'Documentos':'Documentos',
-            'Tipo_Proyecto':'Tipo Proyecto',
-            'investigador':'investigador',
-         }
+            'Tipo':'Tipo de Proyecto',
+            'investigador':'Investigador',
+
+        }
         widgets = {
             'Titulo': forms.TextInput(attrs={'class': 'form-control'}),
-            'Palabras_Clave':forms.Textarea(attrs={'class':'form-control'}),
+            'Palabras_Claves':forms.Textarea(attrs={'class':'form-control'}),
             'Documentos': forms.FileInput(attrs={'class': 'form-control'}),
-            'Tipo_Proyecto': forms.TextInput(attrs={'class': 'form-control'}),
-            'investigador':forms.Select(attrs={'class': 'form-control'}),
+            'Tipo': forms.TextInput(attrs={'class': 'form-control'}),
+            'investigador': forms.Select(attrs={'class': 'form-control'}),
+
         }

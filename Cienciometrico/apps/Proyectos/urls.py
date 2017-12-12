@@ -1,12 +1,14 @@
 from django.conf.urls import url
+from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from apps.Proyectos.models import proyecto
-from apps.Proyectos.views import Proyectoscrear,ListProyectos,ProyectosEdit,DeleteProyectos
+from apps.Proyectos.views import Proyectocrear,ProyectoDelete,ProyectoEdit,ProyectoList
+
 
 urlpatterns = [
-
-    url(r'^CrearProyectos$',Proyectoscrear, name="create_Proyectos"),
-   url(r'^ListarProyectos',ListProyectos.as_view(queryset=proyecto.objects.all().order_by('id')), name="lista_Proyectos"),
-   url(r'^UpdateProyectos/(?P<id_Proyectos>\d+)/$',ProyectosEdit, name="update_Proyectos"),
-   url(r'^DeleteProyectos/(?P<id_Proyectos>\d+)/$',DeleteProyectos.as_view(), name="delete_Proyectos"),
-
+    url(r'^uploads/form/$', Proyectocrear, name='proyectos_crear'),
+    url(r'^listar', ProyectoList.as_view(queryset= proyecto.objects.all().order_by('id')), name='proyectos_lis'),
+    url(r'^editar/(?P<id_proyecto>\d+)/$',ProyectoEdit, name='proyectos_update'),
+    url(r'^eliminar/(?P<pk>\d+)/$',ProyectoDelete.as_view(), name='proyectos_eliminar'),
 ]
