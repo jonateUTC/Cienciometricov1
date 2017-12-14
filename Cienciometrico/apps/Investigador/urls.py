@@ -7,7 +7,7 @@ urlpatterns = [
 
     url(r'^actualizarInvestigador$',ActualizarInves, name="actualizar"),
     url(r'^registrar', RegistroUsuario.as_view(), name="registrar"),
-    url(r'^listar', ListUsuario.as_view(queryset=User.objects.all().order_by('id')), name="listar"),
+    url(r'^listar', ListUsuario.as_view(), name="listar"),
     url(r'^actualizar/(?P<pk>\d+)/$',UpdateInvestigador.as_view(), name="update"),
 
 ]

@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 from django.contrib.messages import constants as messages
-
+from django.core.urlresolvers import reverse_lazy
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'apps.otrasinvestigaciones',
     'apps.participacioneventos',
     'apps.Proyectos',
+    'apps.perfiles',
 
 ]
 
@@ -141,7 +142,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
+AUTH_USER_MODEL  =  'perfiles.User'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS=(os.path.join(BASE_DIR,'static'),)

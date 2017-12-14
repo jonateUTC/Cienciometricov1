@@ -1,4 +1,6 @@
 {% load staticfiles %}
+
+{% if user.is_authenticated== True and user.is_staff == True and user.is_superuser == True and user.is_universidad== True and user.is_facultad== True and user.is_docente== True %}
 <!DOCTYPE html>
 <html>
     <title>{% block title %}Cienciometrico {% endblock %}</title>
@@ -18,6 +20,7 @@
 {% block navbar %}
 <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px; background:#E7F1F0; " id="mySidebar">
   <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+
     <a href="{% url 'pais:pais_listar' %}" id="uno" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> País</a>
     <a href="{% url 'zona:zona_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/iconos-zona.png' %}"> Zona</a>
     <a href="{% url 'provincia:provincia_listar' %}"class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/country.png' %}"> Provincia</a>
@@ -60,3 +63,6 @@ function w3_close() {
      
 </body>
 </html>
+{%  elif user.is_authenticated== True and user.is_staff == True and user.is_superuser == False and user.is_universidad== True and user.is_facultad== False and user.is_docente== False  %}
+{% extends 'base1/inicio2.html' %}
+{% endif %}
