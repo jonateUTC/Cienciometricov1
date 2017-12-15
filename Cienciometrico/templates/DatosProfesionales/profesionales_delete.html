@@ -1,6 +1,11 @@
-{% extends 'base1/inicio2.html' %}
-{% load staticfiles%}
-
+{% extends 'base1/inicio.html' %}
+{% load staticfiles %}
+{% block home %}
+    <a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
+    {% endblock %}
+    {% block item5 %}
+    <a href="{% url 'datosprofe:datosprofe_listar' %}" id="uno" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Datos Profesionales</a>
+    {% endblock %}
 {% block content %}
 <br>
 <form method="post">
