@@ -1,35 +1,98 @@
 {% load staticfiles %}
-
-{% if user.is_authenticated== True and user.is_staff == True and user.is_superuser == True and user.is_universidad== True and user.is_facultad== True and user.is_docente== True %}
 <!DOCTYPE html>
 <html>
-    <title>{% block title %}Cienciometrico {% endblock %}</title>
-{% block extrastatic %}
-{% endblock %}
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style>
+	<title>{% block title %}Cienciometrico {% endblock %}</title>
+	{% block extrastatic %}
+	{% endblock %}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+		#uno {
+		background-color: #009688 !important;
+		}
+	</style>
+	<body>
+		{% if user.is_authenticated and user.is_staff == True and user.is_superuser == True %}
+		{% block navbar %}
+		<div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px; background:#E7F1F0; " id="mySidebar">
+			<button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+			<a href="{% url 'pais:pais_listar' %}" id="uno" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> País</a>
+			<a href="{% url 'zona:zona_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/iconos-zona.png' %}"> Zona</a>
+			<a href="{% url 'provincia:provincia_listar' %}"class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/country.png' %}"> Provincia</a>
+			<a href="{% url 'canton:canton_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/city.png' %}"> Cantón</a>
+			<a href="{% url 'universidad:universidad_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/university.png' %}"> Universidad</a>
+			<a href="{% url 'campus:campus_listar' %}" class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/campus.png' %}"> Campus</a>
+			<a href="{% url 'Facultad:lista_Facultad' %}"  class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/facultad5.png' %}"> Facultad</a>
+			<a href="{% url 'carrera:lista_Carrera' %}"  class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/carrera.png' %}"> Carrera</a>
+			<a href="{% url 'evento:lista_Evento' %}"  class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/evento.png' %}">Evento</a>
+		</div>
+		<div class="w3-main" style="margin-left:200px; ">
+			<div class="w3-teal"  >
+				<button class="w3-button w3-teal w3-xlarge w3-hide-large"  onclick="w3_open()">&#9776;</button>
+			</div>
+			{% endblock %}
+			{% block content %}
+			<div class="w3-container">
+				<h3>Responsive Sidebar</h3>
+				<p>The sidebar in this example will always be displayed on screens wider than 992px, and hidden on tablets or mobile phones (screens less than 993px wide).</p>
+				<p>On tablets and mobile phones the sidebar is replaced with a menu icon to open the sidebar.</p>
+				<p>The sidebar will overlay of the page content.</p>
+				<p><b>Resize the browser window to see how it works.</b></p>
+			</div>
+		</div>
+		{% endblock %}
+		<script>
+			function w3_open() {
+			    document.getElementById("mySidebar").style.display = "block";
+			}
+			function w3_close() {
+			    document.getElementById("mySidebar").style.display = "none";
+			}
+		</script>
+            {% elif user.is_authenticated and user.is_universidad == True %}
+     <style>
          #uno {
     background-color: #009688 !important;
     }
     </style>
-<body>
-{% block navbar %}
+
+{% block navbar1 %}
+
 <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px; background:#E7F1F0; " id="mySidebar">
   <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+    {% block item5 %}
+    <a href="{% url 'datosprofe:datosprofe_listar' %}" id="uno" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Datos Profesionales</a>
+    {% endblock %}
+    {% block item %}
+    <a href="{% url 'investigacion:investigaciones_lis' %}" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Investigaciones</a>
+    {% endblock %}
+    {% block item1 %}
+    <a href="{% url 'otrainvestigacion:otrasinvestigaciones_lis' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/iconos-zona.png' %}"> Otras Investigaciones</a>
+    {% endblock %}
+    {% block item2 %}
+    <a href="{% url 'partevento:partevento_lis' %}"class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/country.png' %}"> Participación en Eventos</a>
+    {% endblock %}
+    {% block item3 %}
+    <a href="" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/city.png' %}"> Cantón</a>
+    {% endblock %}
+    {% block itemArti %}
+    <a href="{% url 'articulosCientificos:ListaArticulo' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/articuloCient.png' %}">Artículos Científicos</a>
+    {% endblock %}
+    {% block itemForAcad %}
+    <a href="{% url 'FormacionAcademica:lista_Formacion_Academica' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/FormaAcad.png' %}">Formación Académica</a>
+    {% endblock %}
+     {% block itemForCompl %}
+    <a href="{% url 'FormacionComplementaria:lista_Formacion_Complementaria' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/FormaComp.png' %}">Formación Complementaria</a>
+    {% endblock %}
+     {% block itemProyecto %}
+    <a href="{% url 'proyecto:proyectos_lis' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/project.png' %}">Proyectos</a>
+    {% endblock %}
 
-    <a href="{% url 'pais:pais_listar' %}" id="uno" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> País</a>
-    <a href="{% url 'zona:zona_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/iconos-zona.png' %}"> Zona</a>
-    <a href="{% url 'provincia:provincia_listar' %}"class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/country.png' %}"> Provincia</a>
-    <a href="{% url 'canton:canton_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/city.png' %}"> Cantón</a>
-    <a href="{% url 'universidad:universidad_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/university.png' %}"> Universidad</a>
-    <a href="{% url 'campus:campus_listar' %}" class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/campus.png' %}"> Campus</a>
-    <a href="{% url 'Facultad:lista_Facultad' %}"  class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/facultad5.png' %}"> Facultad</a>
-    <a href="{% url 'carrera:lista_Carrera' %}"  class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/carrera.png' %}"> Carrera</a>
-    <a href="{% url 'evento:lista_Evento' %}"  class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/evento.png' %}">Evento</a>
+
+
 </div>
 
 <div class="w3-main" style="margin-left:200px; ">
@@ -38,18 +101,20 @@
 
 </div>
 {% endblock %}
-    {% block content %}
+    {% block content1 %}
 
 
-
+    <div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
+        <div style="float:right;">
+            <strong style="color:white;font-size:150%">Bienvenido/</strong>
+            <strong style="color:white;font-size:150%">{{user.username}}/</strong>
+            <strong style="color:white;font-size:150%"><a href="{% url 'logout'%}" style="color:white;">Cerrar Sesion</a></strong>
+        </a>
+            </div>
+    </div>
 <div class="w3-container">
-<h3>Responsive Sidebar</h3>
-<p>The sidebar in this example will always be displayed on screens wider than 992px, and hidden on tablets or mobile phones (screens less than 993px wide).</p>
-<p>On tablets and mobile phones the sidebar is replaced with a menu icon to open the sidebar.</p>
-<p>The sidebar will overlay of the page content.</p>
-<p><b>Resize the browser window to see how it works.</b></p>
+    <div align="middle" style="margin:17% auto;"><img  src="{% static 'images/logo.png' %}" alt="" ></div>
 </div>
-   
 </div>
  {% endblock %}
 <script>
@@ -60,9 +125,8 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
 }
 </script>
-     
-</body>
+
+
+		{% endif %}
+	</body>
 </html>
-{%  elif user.is_authenticated== True and user.is_staff == True and user.is_superuser == False and user.is_universidad== True and user.is_facultad== False and user.is_docente== False  %}
-{% extends 'base1/inicio2.html' %}
-{% endif %}

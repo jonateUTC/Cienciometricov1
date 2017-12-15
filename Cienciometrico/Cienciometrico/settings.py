@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from django.core.urlresolvers import reverse_lazy
 from django.contrib.messages import constants as messages
 from django.core.urlresolvers import reverse_lazy
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -57,6 +58,7 @@ INSTALLED_APPS = [
     'apps.participacioneventos',
     'apps.Proyectos',
     'apps.perfiles',
+    'apps.inicio',
 
 ]
 
@@ -98,9 +100,9 @@ WSGI_APPLICATION = 'Cienciometrico.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cienciometrico',
+        'NAME': 'cienciometricov',
         'USER': 'postgres',
-        'PASSWORD': '1727500363',
+        'PASSWORD': '1724542103',
         'HOST': 'localhost',
         'PORT': 5432,
     }
@@ -156,3 +158,6 @@ MESSAGE_TAGS = {
 }
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_REDIRECT_URL= reverse_lazy('inicio:logeo')
+LOGOUT_REDIRECT_URL= reverse_lazy('login')

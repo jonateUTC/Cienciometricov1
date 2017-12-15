@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import login,logout_then_login
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^pais/', include('apps.pais.urls', namespace="pais")),
@@ -38,6 +39,11 @@ urlpatterns = [
     url(r'^participacioneventos/', include('apps.participacioneventos.urls', namespace="partevento")),
     url(r'^proyectos/', include('apps.Proyectos.urls', namespace="proyecto")),
     url(r'^perfiles/', include('apps.perfiles.urls', namespace="User")),
+    url(r'^login/', include('apps.inicio.urls', namespace="inicio")),
+    url(r'^', include('django.contrib.auth.urls')),
+    url(r'^accounts/login', login,{'template_name':'login.html'},name='login'),
+    url(r'^logout/', logout_then_login,  name='logout'),
+
 ]
 
 if settings.DEBUG:
