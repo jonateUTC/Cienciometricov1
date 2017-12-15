@@ -3,11 +3,13 @@ from django.core.urlresolvers import reverse_lazy
 from apps.zona.form import ZonaForm
 from apps.zona.models import zona
 from django.views.generic import ListView, CreateView,UpdateView,DeleteView
+
 # Create your views here.
 class ZonaList(ListView):
     model = zona
-    template_name = 'zona/zona_listar.html'
+    template_name='zona/zona_listar.html'
     paginate_by = 6
+
 
 class ZonaCreate(CreateView):
     model = zona
