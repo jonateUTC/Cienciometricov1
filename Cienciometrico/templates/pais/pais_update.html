@@ -6,16 +6,28 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <link rel="stylesheet" href="static/css/animate.min.css">
 {% endblock %}
+ {% block home %}
+    <a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
+    {% endblock %}
+    {% block pais %}
+	<a href="{% url 'pais:pais_listar' %}" id="uno" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> País</a>
+	{% endblock %}
 {% block content %}
 
 <form method="post">
     {% csrf_token %}
     <div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
      <h2 align="center" style="color:white"><span class="glyphicon glyphicon-plus"></span> ACTUALIZAR <span style="color:#FC9C30">PAÍS</span> </h2>
-        </div>
+     <div style="float:right;">
+            <strong style="color:white;font-size:100%">Bienvenido/</strong>
+            <strong style="color:white;font-size:100%">{{user.username}}/</strong>
+            <strong style="color:white;font-size:100%"><a href="{% url 'logout'%}" style="color:white;"><span class="glyphicon glyphicon-log-out"></span>Cerrar Sesion</a></strong>
+        </a>
+            </div>
+	</div>
     <br>
 	<div class="container">
-		<div class="col-md-9 col-md-offset-2">
+		<div class="col-md-8 col-md-offset-2">
 	<a href="{% url 'pais:pais_listar' %}" class="btn btn-primary  pull-right"><i class="glyphicon glyphicon-eye-open"></i> Ver Todos</a>
 		</div>
 		</div>

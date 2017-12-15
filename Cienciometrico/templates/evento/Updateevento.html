@@ -1,5 +1,11 @@
-{% extends 'base1/inicio.html' %}
+{% extends 'base1/inicio.html'%}
 {% load staticfiles %}
+ {% block home %}
+    <a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
+    {% endblock %}
+{% block eveto %}
+            <a href="{% url 'evento:lista_Evento' %}" id="uno" class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/evento.png' %}">Evento</a>
+			{% endblock %}
 <!DOCTYPE html>
 <html lang="en">
 <head>

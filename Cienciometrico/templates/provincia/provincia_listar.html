@@ -6,26 +6,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <link rel="stylesheet" href="static/css/animate.min.css">
 {% endblock %}
-{% block navbar %}
-<div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px; background:#E7F1F0; " id="mySidebar">
-  <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
-    <a href="{% url 'pais:pais_listar' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> País</a>
-    <a href="{% url 'zona:zona_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/iconos-zona.png' %}"> Zona</a>
-    <a href="{% url 'provincia:provincia_listar' %}" id="uno"class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/country.png' %}"> Provincia</a>
-    <a href="{% url 'canton:canton_listar' %}"  class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/city.png' %}"> Cantón</a>
-    <a href="{% url 'universidad:universidad_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/university.png' %}"> Universidad</a>
-    <a href="{% url 'campus:campus_listar' %}" class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/campus.png' %}"> Campus</a>
-   <a href="{% url 'Facultad:lista_Facultad' %}" class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/facultad5.png' %}"> Facultad</a>
-    <a href="{% url 'carrera:lista_Carrera' %}" class="w3-bar-item w3-button"> <img width="15%" src="{% static 'images/carrera.png' %}"> Carrera</a>
-</div>
-
-<div class="w3-main" style="margin-left:200px; ">
-<div class="w3-teal"  >
-  <button class="w3-button w3-teal w3-xlarge w3-hide-large"  onclick="w3_open()">&#9776;</button>
-
-</div>
-{% endblock %}
-
+ {% block home %}
+    <a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
+    {% endblock %}
+ {% block provincia %}
+            <a href="{% url 'provincia:provincia_listar' %}" id="uno" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/country.png' %}"> Provincia</a>
+			{% endblock %}
     {% block content %}
 
 <div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >

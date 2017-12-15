@@ -1,7 +1,7 @@
-{% extends 'base1/inicio2.html'%}
+{% extends 'base1/inicio.html'%}
 {% load staticfiles %}
-{% block item5 %}
-    <a href="{% url 'datosprofe:datosprofe_listar' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> Datos Profesionales</a>
+    {% block home %}
+    <a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
     {% endblock %}
      {% block itemProyecto %}
     <a href="{% url 'proyecto:proyectos_lis' %}" id="uno" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/project.png' %}">Proyectos</a>
