@@ -1,22 +1,258 @@
+{% extends 'base1/inicio.html'%}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+	{% block extrastatic %}
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAiVBq0HNzpFaQrKvjWzHP862amAuwGnE0"></script>
+	{% endblock %}
+
+
 </head>
-<body>
+<body >
+    {% block home %}
+    <a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
+    {% endblock %}
+    {% block usuario %}
+	<a href="{% url 'usuario:registrar' %}" id="uno" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Usuario</a>
+	{% endblock %}
+	{% block content %}
 <form method="post">
 	{% csrf_token %}
-    {{form.as_p}}
-	{{form2.as_p}}
+	 <div  class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
+     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-plus"></span> NUEVO <span style="color:#FC9C30">USUARIO</span> </h2>
+        <div style="float:right;">
+            <strong style="color:white;font-size:100%">Bienvenido/</strong>
+            <strong style="color:white;font-size:100%">{{user.username}}/</strong>
+            <strong style="color:white;font-size:100%"><a href="{% url 'logout'%}" style="color:white;"><span class="glyphicon glyphicon-log-out"></span>Cerrar Sesion</a></strong>
+        </a>
+            </div>
+        </div>
+    <br>
+
+	<div class="content">
+		<div class="col-md-9 col-md-offset-2">
+		<label >Cedula:</label>
+        <input type="text" name="Cedula" class="form-control" >
+	</div>
+	<div class="content">
+		<div class="col-md-9 col-md-offset-2">
+		<label >Dirección:</label>
+		<input type="text" name="Direccion" class="form-control" id="address1" >
+	</div>
+	<div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Coordenadas:</label><br>
+				  <input type="button"   class="btn btn-success" value="Obtener Direccion" onclick="codeLatLng()" >
+                  <br>
+
+                 <input id="latlng" value="-0.917476, -78.632573"  style="display:none" type="text" name="Coordenadas" class="form-control" >
+					   <br>
+	</div>
 	<div class="row">
+		<div class="col-md-9 col-md-offset-2">
+			<div class="form-group">
+                 <div align="center" id="map_canvas" style="width: 900px; height: 300px;">
+            </div>
+		</div>
+        </div>
+	</div>
+	<div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Telefono:</label>
+                 <input type="number" name="Telefono" class="form-control" >
+	</div>
+	<div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Género:</label>
+                 <input type="text" name="Genero" class="form-control" >
+	</div>
+	<div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Ciudadania:</label>
+                 <input type="text" name="Ciudadania" class="form-control" >
+	</div>
+	<div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Roles:</label>
+				  {{form.roles}}
+	</div>
+	<div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Usuario:</label>
+                 <input type="text" name="username" class="form-control" >
+	</div>
+	<div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Contraseña:</label>
+                 <input type="password" name="password" class="form-control" >
+	</div>
+	<div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Nombres:</label>
+                 <input type="text" name="first_name" class="form-control" >
+	</div>
+	<div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Apellidos:</label>
+                 <input type="text" name="last_name" class="form-control" >
+	</div>
+	<div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Correo Electrónico:</label>
+                 <input type="email" name="email" class="form-control" >
+					   <br><br>
+	</div>
+	<div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+
+                 <input type="checkbox" style="display:none" checked name="is_staff" class="form-control" >
+	</div>
+
+	<div class="content">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="form-group">
 				<button class="btn btn-primary "type="submit">Guardar</button>
 			</div>
 		</div>
 	</div>
+	<script type='text/javascript'>
+                  var geocoder;
+                  var map;
+                  var infowindow = null;
+                  function openInfoWindow(marker) {
+                  var markerLatLng = marker.getPosition();
+
+                  infoWindow.setContent([
+                     '<strong>La posicion del marcador es:</strong><br/>',
+                     markerLatLng.lat(),
+                     ', ',
+                     markerLatLng.lng(),
+                     '<br/>ArrÃ¡strame para actualizar la posiciÃ³n.'
+                  ].join(''));
+                  infoWindow.open(map, marker);
+                  document.getElementById('latlng').value = markerLatLng.lat()+','+markerLatLng.lng();
+
+                  }
+
+
+                  var marker = new google.maps.Marker({
+                     position: latlng,
+                     draggable: true,
+                     map: map,
+                  });
+                  google.maps.event.addListener(marker, 'dragend', function(){ openInfoWindow(marker); });
+                  google.maps.event.addListener(marker, 'click', function(){ openInfoWindow(marker); });
+
+                  function closeInfoWindow() {
+                     infowindow.close();
+                  }
+
+                  function initialize() {
+                  geocoder = new google.maps.Geocoder();
+                  var latlng = new google.maps.LatLng(-0.917476, -78.632573);
+                  var mapOptions = {
+                  zoom: 13,
+                  center: latlng,
+                  mapTypeId: 'roadmap'
+                  }
+                  infoWindow = new google.maps.InfoWindow();
+                  map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+                  google.maps.event.addListener(map, 'click', function(){
+                         closeInfoWindow();
+                       });
+                  }
+
+                  function codeLatLng() {
+                  var input = $('#latlng').val();
+                  var latlngStr = input.split(',', 2);
+                  var lat = parseFloat(latlngStr[0]);
+                  var lng = parseFloat(latlngStr[1]);
+                  var latlng = new google.maps.LatLng(lat, lng);
+                  geocoder.geocode({'latLng': latlng}, function(results, status) {
+                  if (status == google.maps.GeocoderStatus.OK) {
+                   if (results[0]) {
+                     map.fitBounds(results[0].geometry.viewport);
+                             marker.setMap(map);
+                             marker.setPosition(latlng);
+                     $('#address').text(results[0].formatted_address);
+                     document.getElementById('address1').value=results[0].formatted_address;
+                     infowindow.setContent(results[0].formatted_address);
+                     infowindow.open(map, marker);
+                     google.maps.event.addListener(marker, 'click', function(){
+                         infowindow.setContent(results[0].formatted_address);
+                         infowindow.open(map, marker);
+
+                     });
+                   } else {
+                     alert('No results found');
+                   }
+                  } else {
+                   alert('Geocoder failed due to: ' + status);
+                  }
+                  });
+
+                  }
+
+                  $(document).ready(function(){
+                  initialize();
+                  gmaps_ads();
+
+                  });
+               </script>
+               <script>
+               function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("check");
+        if (check.checked) {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+    }
+               </script>
+
+                  <script>
+               function showContent2() {
+        element = document.getElementById("content2");
+        check = document.getElementById("check2");
+        if (check.checked) {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+    }
+</script>
+             <script>
+      function showContenido() {
+        element = document.getElementById("contenido");
+        check = document.getElementById("check3");
+        if (check.checked) {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+    }
+
+    function showContenido2() {
+        element = document.getElementById("contenido2");
+        check = document.getElementById("check4");
+        if (check.checked) {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+    }
+               </script>
 
 </form>
+{% endblock %}
 </body>
 </html>

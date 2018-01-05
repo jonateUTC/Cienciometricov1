@@ -17,6 +17,25 @@ class RegistroForm(forms.ModelForm):
 
 
         ]
+        labels = {
+            'Cedula': 'Cedula',
+            'Direccion': 'Direccion',
+            'Coordenadas': 'Coordenadas',
+            'Telefono': 'Telefono',
+            'Genero': 'Genero',
+            'Ciudadania': 'Ciudadania',
+            'roles': 'Roles',
+        }
+        widgets = {
+            'Cedula': forms.TextInput(attrs={'class': 'form-control'}),
+            'Direccion': forms.TextInput(attrs={'class': 'form-control'}),
+            'Coordenadas': forms.TextInput(attrs={'class': 'form-control'}),
+            'Telefono': forms.TextInput(attrs={'class': 'form-control'}),
+            'Genero': forms.TextInput(attrs={'class': 'form-control'}),
+            'Ciudadania': forms.TextInput(attrs={'class': 'form-control'}),
+            'roles': forms.CheckboxSelectMultiple(),
+
+        }
 
 
 class UserForm (forms.ModelForm):
