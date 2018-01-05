@@ -1,5 +1,15 @@
 {% load staticfiles %}
 <!DOCTYPE html>
+<style>
+footer {
+    padding: 1em;
+    color: white;
+    background: #009688;
+    clear: left;
+    text-align: center;
+}
+
+</style>
 <html>
 	<title>{% block title %}Cienciometrico {% endblock %}</title>
 	{% block extrastatic %}
@@ -80,6 +90,15 @@
      {% block itemProyecto %}
     <a href="{% url 'proyecto:proyectos_lis' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/project.png' %}">Proyectos</a>
     {% endblock %}
+            {% block itemLibro %}
+    <a href="{% url 'Libro:libro_lis' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/libro.png' %}">Libros</a>
+    {% endblock %}
+            {% block itemRevista %}
+    <a href="{% url 'Revista:lista_Revista' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/revista.png' %}">Revista</a>
+    {% endblock %}
+             {% block itemPublicaciones %}
+    <a href="{% url 'publicaciones:lista_Publicaciones' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/publicaciones.png' %}">Publicaciones</a>
+    {% endblock %}
     {% endif %}
 		</div>
 		<div class="w3-main" style="margin-left:200px; ">
@@ -99,6 +118,7 @@
 			<div class="w3-container">
 				 <div align="middle" style="margin:17% auto;"><img  src="{% static 'images/logo.png' %}" alt="" ></div>
 			</div>
+            <footer>Copyright 2018 &copy; </footer>
 		</div>
 		{% endblock %}
 		<script>

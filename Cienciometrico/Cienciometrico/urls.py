@@ -43,6 +43,9 @@ urlpatterns = [
     url(r'^', include('django.contrib.auth.urls')),
     url(r'^accounts/login', login,{'template_name':'login.html'},name='login'),
     url(r'^logout/', logout_then_login,  name='logout'),
+    url(r'^libro/', include('apps.Libro.urls', namespace="Libro")),
+    url(r'^revista/', include('apps.Revista.urls', namespace="Revista")),
+    url(r'^Publicaciones/', include('apps.Publicaciones.urls', namespace="publicaciones")),
 
 ]
 

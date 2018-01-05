@@ -19,6 +19,7 @@ class ProyectoList(ListView):
     model = proyecto
     template_name = 'proyecto/proyectos_listar.html'
     paginate_by = 6
+
 def ProyectoEdit(request, id_proyecto):
     proy = proyecto.objects.get(id=id_proyecto)
     if request.method == 'POST':
@@ -29,6 +30,7 @@ def ProyectoEdit(request, id_proyecto):
     else:
         form = DocumentForm(instance=proy)
     return render(request, 'proyecto/proyectos_update.html', {'form': form})
+
 class ProyectoDelete(DeleteView):
     model = proyecto
     template_name = 'proyecto/proyectos_delete.html'
