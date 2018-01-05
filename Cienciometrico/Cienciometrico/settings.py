@@ -59,13 +59,10 @@ INSTALLED_APPS = [
     'apps.Proyectos',
     'apps.perfiles',
     'apps.inicio',
-<<<<<<< HEAD
     'apps.Libro',
     'apps.Revista',
     'apps.Publicaciones',
-=======
     'apps.roles',
->>>>>>> f324fea90ba4fe5deca3d56d63a5ab1bd40db5a4
 
 ]
 
