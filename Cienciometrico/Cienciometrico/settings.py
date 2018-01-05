@@ -59,9 +59,13 @@ INSTALLED_APPS = [
     'apps.Proyectos',
     'apps.perfiles',
     'apps.inicio',
+<<<<<<< HEAD
     'apps.Libro',
     'apps.Revista',
     'apps.Publicaciones',
+=======
+    'apps.roles',
+>>>>>>> f324fea90ba4fe5deca3d56d63a5ab1bd40db5a4
 
 ]
 
@@ -147,7 +151,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-AUTH_USER_MODEL  =  'perfiles.User'
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS=(os.path.join(BASE_DIR,'static'),)

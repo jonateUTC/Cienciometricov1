@@ -1,41 +1,40 @@
-from django.shortcuts import render,HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect
+from apps.perfiles.models import Perfil
+from apps.roles.models import Rol
+from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import CreateView
 from django.core.urlresolvers import reverse_lazy
-from apps.perfiles.form import UserForm
-from apps.perfiles.models import User
-from django.views.generic import ListView, CreateView,UpdateView,DeleteView
+from apps.perfiles.form import RegistroForm,UserForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
+from django.utils.decorators import method_decorator
 # Create your views here.
-class UserList(ListView):
-    model = User
-    template_name = 'User/User_listar.html'
-    paginate_by = 6
+class RegistroUsuario(CreateView):
+        model = Perfil
+        template_name = "usuario/registrar.html"
+        form_class = RegistroForm
+        second_form_class = UserForm
+        success_url = reverse_lazy('usuario:registrar')
 
-class UserCreate(CreateView):
-    model = User
-    form_class = UserForm
-    template_name = 'User/User_crear.html'
-    success_url = reverse_lazy('User:User_lis')
-    def get_context_data(self, **kwargs):
-        context= super(UserCreate,self).get_context_data(**kwargs)
-        if 'form' not in context:
-            context['form']= self.form_class(self.request.GET)
-        return context
-    def post(self, request, *args, **kwargs):
-        self.object= self.get_object
-        form= self.form_class(request.POST)
-        if form.is_valid():
-            solicitud= form.save(commit=False)
-            solicitud.set_password(form.cleaned_data['password'])
-            solicitud.save()
-            return HttpResponseRedirect(self.get_success_url())
-        else:
-            return self.render_to_response(self.get_context_data(form=form))
+        def get_context_data(self, **kwargs):
+             context= super(RegistroUsuario,self).get_context_data(**kwargs)
+             if 'form' not in context:
+                context['form']= self.form_class(self.request.GET)
+             if 'form2' not in context:
+                context['form2']= self.second_form_class(self.request.GET)
+             return context
+        def post(self, request, *args, **kwargs):
+              self.object= self.get_object
+              form= self.form_class(request.POST)
+              form2 = self.second_form_class(request.POST)
+              if form.is_valid() and form2.is_valid():
 
-class UserUpdate(UpdateView):
-    model = User
-    form_class = UserForm
-    template_name = 'User/User_update.html'
-    success_url = reverse_lazy('User:User_lis')
-class UserDelete(DeleteView):
-    model = User
-    template_name = 'User/User_delete.html'
-    success_url = reverse_lazy('User:User_lis')
+                   perfil= form.save(commit=False)
+                   perfil.user=form2.save()
+                   perfil.user.set_password(form2.cleaned_data['password'])
+                   perfil.user.save()
+                   perfil.save()
+                   form.save_m2m()
+                   return HttpResponseRedirect(self.get_success_url())
+              else:
+                   return self.render_to_response(self.get_context_data(form=form, form2=form2))
