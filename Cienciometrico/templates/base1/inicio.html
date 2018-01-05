@@ -22,7 +22,7 @@
              {% block home %}
     <a href="{% url 'inicio:logeo' %}" id="uno" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
     {% endblock %}
-			{% if user.is_authenticated and user.is_staff == True and user.is_superuser == True %}
+            {% if user.is_authenticated and user.is_staff == True and user.is_superuser == True %}
             {% block pais %}
 			<a href="{% url 'pais:pais_listar' %}" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/globe.png' %}"> País</a>
 			{% endblock %}
@@ -32,9 +32,14 @@
             {% block provincia %}
             <a href="{% url 'provincia:provincia_listar' %}"class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/country.png' %}"> Provincia</a>
 			{% endblock %}
+            {% for us in usuario%}
+            {% if us == 'ver_rol' %}
             {% block canton %}
             <a href="{% url 'canton:canton_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/city.png' %}"> Cantón</a>
 			{% endblock %}
+            {% endif %}
+            {% endfor %}
+            {{usuario}}
             {% block universidad %}
             <a href="{% url 'universidad:universidad_listar' %}" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/university.png' %}"> Universidad</a>
 			{% endblock %}
