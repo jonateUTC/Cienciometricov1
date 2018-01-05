@@ -11,3 +11,8 @@ class participacionevento(models.Model):
     Nombre_Evento=models.CharField(max_length=255)
     Nivel=models.IntegerField()
     Lugar_Evento=models.CharField(max_length=255)
+
+    class Meta:
+        permissions = (
+            ("ver_ParticipacionesEventos", "ver ParticipacionesEventos"),
+        )

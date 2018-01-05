@@ -8,3 +8,8 @@ class provincia (models.Model):
 
     def __str__(self):
         return '{}'.format(self.Nombre)
+
+    class Meta:
+        permissions = (
+            ("ver_provincia", "ver provincia"),
+        )

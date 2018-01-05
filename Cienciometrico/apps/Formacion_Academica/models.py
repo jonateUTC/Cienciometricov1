@@ -11,3 +11,8 @@ class formacion_academica(models.Model):
  Fecha_Fin_Estudios=models.DateField(null=True)
  Nombre_Centro_Estudios=models.CharField(max_length=250,null=True)
  investigador = models.ForeignKey(investigador, null=True, blank=True, on_delete=models.CASCADE)
+
+ class Meta:
+  permissions = (
+   ("ver_formacionAcademica", "ver formacionAcademica"),
+  )

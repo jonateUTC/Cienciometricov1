@@ -12,3 +12,8 @@ class formacion_complementaria(models.Model):
     Fecha_Fin=models.DateField(null=True)
     Nombre_Centro_Estudios=models.CharField(max_length=250,null=True)
     investigador=models.ForeignKey(investigador,null=True ,blank=True,on_delete=models.CASCADE)
+
+    class Meta:
+        permissions = (
+            ("ver_FormacionComplementaria", "ver FormacionComplementaria"),
+        )

@@ -9,3 +9,8 @@ class investigacion(models.Model):
     Fecha = models.DateField()
     Editor = models.CharField(max_length=255)
     Url = models.URLField();
+
+    class Meta:
+        permissions = (
+            ("ver_investigaciones", "ver investigaciones"),
+        )

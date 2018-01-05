@@ -7,3 +7,8 @@ class zona (models.Model):
     pais = models.ForeignKey(pais, null=True, blank=True, on_delete=models.CASCADE)
     def __str__(self):
         return '{}'.format(self.Nombre)
+
+    class Meta:
+        permissions = (
+            ("ver_zona", "ver zona"),
+        )

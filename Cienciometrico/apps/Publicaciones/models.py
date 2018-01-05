@@ -13,3 +13,8 @@ class publicaciones(models.Model):
      Editorial = models.CharField(max_length=500)
      DB_Indexada=models.CharField(max_length=500)
      Url=models.URLField()
+
+     class Meta:
+          permissions = (
+               ("ver_Publicaciones", "ver Publicaciones"),
+          )

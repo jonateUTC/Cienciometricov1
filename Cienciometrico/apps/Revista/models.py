@@ -12,3 +12,8 @@ class revista(models.Model):
  Cuartil_Pertenece=models.CharField(max_length=500)
  Factor_Impacto=models.CharField(max_length=500)
  Url=models.URLField()
+
+ class Meta:
+  permissions = (
+   ("ver_Revista", "ver Revista"),
+  )

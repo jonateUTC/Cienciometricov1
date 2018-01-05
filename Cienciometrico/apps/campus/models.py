@@ -9,3 +9,8 @@ class campus (models.Model):
  universidad=models.ForeignKey(universidad,null=True ,blank=True ,on_delete=models.CASCADE)
  def __str__(self):
         return '{}'.format(self.Nombre)
+
+ class Meta:
+     permissions = (
+         ("ver_campus", "ver campus"),
+     )

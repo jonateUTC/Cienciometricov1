@@ -13,3 +13,9 @@ class carrera (models.Model):
 
     def __str__(self):
         return '{}'.format(self.Nombre)
+
+    class Meta:
+        permissions = (
+            ("ver_carrera", "ver carrera"),
+        )
+

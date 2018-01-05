@@ -17,5 +17,8 @@ class articulos_cientificos (models.Model):
     Fecha_Publicacion=models.DateField(blank=True,null=True)
     investigador = models.ForeignKey(investigador, null=True, blank=True, on_delete=models.CASCADE)
 
-
+    class Meta:
+        permissions = (
+            ("ver_articulo", "ver articulo"),
+        )
 

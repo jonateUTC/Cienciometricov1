@@ -13,3 +13,8 @@ class otrasinvestigaciones(models.Model):
 
  def __str__(self):
   return '{}'.format(self.Titulo)
+
+ class Meta:
+  permissions = (
+   ("ver_otrasinvestigaciones", "ver otrasinvesitgaciones"),
+  )
