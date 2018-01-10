@@ -31,8 +31,8 @@ jQuery(document).ready(function($) {
     }
   });
 
-  $('#tags').inputTags('tags', 'flat', function(tags) {
-    $('.results').empty().html('<strong>Tags:</strong> ' + tags.join(' - '));
+  $('#tags').inputTags('tags', function(tags) {
+    $('.results').empty().html('<strong>Etiquetas:</strong> ' + tags.join(' - '));
   });
 
   var autocomplete = $('#tags').inputTags('options', 'autocomplete');

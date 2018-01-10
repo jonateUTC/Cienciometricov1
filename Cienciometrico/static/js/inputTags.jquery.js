@@ -742,7 +742,7 @@
         keys: [],
         minLength: 2,
         maxLength: 30,
-        max: 6,
+        max: 20,
         email: false,
         only: true,
         init: false,
@@ -760,13 +760,13 @@
             only: false
         },
         errors: {
-            empty: 'Attention, vous ne pouvez pas ajouter un tag vide.',
-            minLength: 'Attention, votre tag doit avoir au minimum %s caractères.',
-            maxLength: 'Attention, votre tag ne doit pas dépasser %s caractères.',
-            max: 'Attention, le nombre de tags ne doit pas dépasser %s.',
-            email: 'Attention, l\'adresse email que vous avez entré n\'est pas valide',
-            exists: 'Attention, ce tag existe déjà !',
-            autocomplete_only: 'Attention, vous devez sélectionner une valeur dans la liste.',
+            empty: 'Advertencia, no puedes agregar una etiqueta vacía.',
+            minLength: 'Advertencia, su etiqueta debe tener al menos %s caracteres.',
+            maxLength: 'AAdvertencia, su etiqueta no debe exceder %s caracteres.',
+            max: 'Atención, la cantidad de etiquetas no debe exceder %s.',
+            email: 'Advertencia, l\'la dirección de correo electrónico que ingresó n\' no es válida',
+            exists: 'Advertencia, esta etiqueta ya existe !',
+            autocomplete_only: 'Advertencia, debe seleccionar un valor de la lista.',
             timeout: 8000
         }
     };

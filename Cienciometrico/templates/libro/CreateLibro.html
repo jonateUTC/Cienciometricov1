@@ -1,5 +1,8 @@
 {% extends 'base1/inicio.html'%}
 {% load staticfiles %}
+{% block extrastatic %}
+
+	{% endblock %}
 {% block home %}
     <a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
     {% endblock %}
