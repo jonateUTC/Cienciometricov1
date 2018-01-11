@@ -39,6 +39,7 @@ class DocumentForm(forms.ModelForm):
             'Url':forms.URLInput(attrs={'class': 'form-control'}),
             'Anio':forms.TextInput(attrs={'class': 'form-control'}),
             'user':forms.CheckboxSelectMultiple(attrs={}),
-            'PalabrasClave':forms.TextInput(attrs={'class': 'form-control'}),
+            'PalabrasClave':forms.TextInput(attrs={'class': 'form-control','id':'tags'}),
+
 
         }

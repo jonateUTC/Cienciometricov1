@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import login,logout_then_login
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^', include('apps.principal.urls', namespace="iniciop")),
     url(r'^pais/', include('apps.pais.urls', namespace="pais")),
     url(r'^zona/', include('apps.zona.urls', namespace="zona")),
     url(r'^provincia/', include('apps.provincia.urls', namespace="provincia")),

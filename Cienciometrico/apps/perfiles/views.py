@@ -17,6 +17,9 @@ class RegistroUsuario(CreateView):
         success_url = reverse_lazy('usuario:registrar')
 
         def get_context_data(self, **kwargs):
+            persona = Perfil.objects.all()  # Esto si retorna un QuerySet
+            exi = persona.exists()
+            if exi == 'True':
              context= super(RegistroUsuario,self).get_context_data(**kwargs)
              usuario = self.request.user.id
              perfil = Perfil.objects.get(user_id=usuario)
@@ -37,6 +40,9 @@ class RegistroUsuario(CreateView):
                 context['form2']= self.second_form_class(self.request.GET)
 
              return context
+            else:
+                context = super(RegistroUsuario, self).get_context_data(**kwargs)
+                return context
         def post(self, request, *args, **kwargs):
               self.object= self.get_object
               form= self.form_class(request.POST)
