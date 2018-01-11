@@ -5,11 +5,13 @@ from apps.pais.models import pais
 from django.views.generic import ListView, CreateView,UpdateView,DeleteView
 from apps.perfiles.models import Perfil
 from apps.roles.models import Rol
+
 # Create your views here.
 class PaisList(ListView):
     model = pais
     template_name = 'pais/pais_listar.html'
     paginate_by = 6
+
     def get_context_data(self, **kwargs):
         context = super(PaisList, self).get_context_data(**kwargs)
         usuario = self.request.user.id

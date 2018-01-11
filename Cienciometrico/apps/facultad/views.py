@@ -9,6 +9,8 @@ from apps.pais.models import pais
 from apps.zona.models import zona
 from apps.universidad.models import universidad
 from apps.campus.models import campus
+from django.contrib.auth.decorators import permission_required
+from django.utils.decorators import method_decorator
 # Create your views here.
 
 class CreateFacultad (CreateView):
@@ -17,15 +19,26 @@ class CreateFacultad (CreateView):
     template_name = 'Facultad/CreateFacultad.html'
     success_url = reverse_lazy('Facultad:lista_Facultad')
 
+    @method_decorator(permission_required('facultad.add_facultad', reverse_lazy('Facultad:lista_Facultad')))
+    def dispatch(self, *args, **kwargs):
+        return super(CreateFacultad, self).dispatch(*args, **kwargs)
+
 class ListFacultad(ListView):
     model = facultad
     template_name = 'Facultad/ListFacultad.html'
 
+    @method_decorator(permission_required('facultad.ver_facultad', reverse_lazy('inicio:logeo')))
+    def dispatch(self, *args, **kwargs):
+        return super(ListFacultad, self).dispatch(*args, **kwargs)
 class UpdateFacultad (UpdateView):
     model = facultad
     form_class = FacultadForm
     template_name = 'Facultad/UpdateFacultad.html'
     success_url = reverse_lazy ('Facultad:lista_Facultad')
+
+    @method_decorator(permission_required('facultad.change_facultad', reverse_lazy('Facultad:lista_Facultad')))
+    def dispatch(self, *args, **kwargs):
+        return super(UpdateFacultad, self).dispatch(*args, **kwargs)
 
 class DeleteFacultad (DeleteView):
     model = facultad
