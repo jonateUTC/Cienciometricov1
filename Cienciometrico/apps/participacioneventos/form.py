@@ -25,7 +25,7 @@ class DocuForm(forms.ModelForm):
         widgets = {
             'Titulo': forms.TextInput(attrs={'class': 'form-control'}),
             'Nivel_Autoria':forms.TextInput(attrs={'class': 'form-control'}),
-            'Palabras_Clave':forms.Textarea(attrs={'class':'form-control','id':'tags'}),
+            'Palabras_Clave':forms.Textarea(attrs={'class':'form-control'}),
             'Resumen': forms.FileInput(attrs={'class': 'form-control'}),
             'Nombre_Evento': forms.TextInput(attrs={'class': 'form-control'}),
             'Nivel':forms.NumberInput(attrs={'class': 'form-control'}),

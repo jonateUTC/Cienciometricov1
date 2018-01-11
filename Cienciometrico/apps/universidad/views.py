@@ -6,13 +6,29 @@ from django.views.generic import ListView, CreateView,UpdateView,DeleteView
 from .models import zona, pais
 from apps.provincia.models import provincia
 from apps.canton.models import canton
-
+from apps.perfiles.models import Perfil
+from apps.roles.models import Rol
 # Create your views here.
 class UniversidadList(ListView):
     model = universidad
     template_name = 'universidad/universidad_listar.html'
     paginate_by = 6
-
+    def get_context_data(self, **kwargs):
+        context = super(UniversidadList, self).get_context_data(**kwargs)
+        usuario = self.request.user.id
+        perfil = Perfil.objects.get(user_id=usuario)
+        roles = perfil.roles.all()
+        privi = []
+        privilegios = []
+        for r in roles:
+            privi.append(r.id)
+        for p in privi:
+            roles5 = Rol.objects.get(pk=p)
+            priv = roles5.privilegios.all()
+            for pr in priv:
+                privilegios.append(pr.codename)
+        context['usuario'] = privilegios
+        return context
 
 
 def vista_ubicacion1(request):

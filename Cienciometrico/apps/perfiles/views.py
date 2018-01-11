@@ -18,10 +18,24 @@ class RegistroUsuario(CreateView):
 
         def get_context_data(self, **kwargs):
              context= super(RegistroUsuario,self).get_context_data(**kwargs)
+             usuario = self.request.user.id
+             perfil = Perfil.objects.get(user_id=usuario)
+             roles = perfil.roles.all()
+             privi = []
+             privilegios = []
+             for r in roles:
+                 privi.append(r.id)
+             for p in privi:
+                 roles5 = Rol.objects.get(pk=p)
+                 priv = roles5.privilegios.all()
+                 for pr in priv:
+                     privilegios.append(pr.codename)
+             context['usuario'] = privilegios
              if 'form' not in context:
                 context['form']= self.form_class(self.request.GET)
              if 'form2' not in context:
                 context['form2']= self.second_form_class(self.request.GET)
+
              return context
         def post(self, request, *args, **kwargs):
               self.object= self.get_object

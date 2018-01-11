@@ -10,6 +10,8 @@ from apps.zona.models import zona
 from apps.universidad.models import universidad
 from apps.campus.models import campus
 from apps.facultad.models import facultad
+from apps.perfiles.models import Perfil
+from apps.roles.models import Rol
 # Create your views here.
 
 class CreateCarrera (CreateView):
@@ -21,7 +23,23 @@ class CreateCarrera (CreateView):
 class ListCarrera(ListView):
     model = carrera
     template_name = 'carrera/Listcarrera.html'
-
+    paginate_by = 6
+    def get_context_data(self, **kwargs):
+        context = super(ListCarrera, self).get_context_data(**kwargs)
+        usuario = self.request.user.id
+        perfil = Perfil.objects.get(user_id=usuario)
+        roles = perfil.roles.all()
+        privi = []
+        privilegios = []
+        for r in roles:
+            privi.append(r.id)
+        for p in privi:
+            roles5 = Rol.objects.get(pk=p)
+            priv = roles5.privilegios.distinct()
+            for pr in priv:
+                privilegios.append(pr.codename)
+        context['usuario'] = privilegios
+        return context
 class UpdateCarrera (UpdateView):
     model = carrera
     form_class = CarreraForm

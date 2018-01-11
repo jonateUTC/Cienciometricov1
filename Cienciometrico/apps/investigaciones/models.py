@@ -12,5 +12,7 @@ class investigacion(models.Model):
 
     class Meta:
         permissions = (
+
             ("ver_investigaciones", "ver investigaciones"),
+
         )

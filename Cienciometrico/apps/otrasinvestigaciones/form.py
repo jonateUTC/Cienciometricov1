@@ -22,7 +22,7 @@ class DocumentForm(forms.ModelForm):
         }
         widgets = {
             'Titulo': forms.TextInput(attrs={'class': 'form-control'}),
-            'Palabras_Clave':forms.Textarea(attrs={'class':'form-control','id':'tags'}),
+            'Palabras_Clave':forms.Textarea(attrs={'class':'form-control'}),
             'Resumen': forms.FileInput(attrs={'class': 'form-control'}),
             'Editor': forms.TextInput(attrs={'class': 'form-control'}),
             'Estado_Investigacion':forms.Textarea(attrs={'class': 'form-control'}),

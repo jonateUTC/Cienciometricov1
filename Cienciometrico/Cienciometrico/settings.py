@@ -63,7 +63,6 @@ INSTALLED_APPS = [
     'apps.Revista',
     'apps.Publicaciones',
     'apps.roles',
-    'apps.principal',
 
 ]
 
@@ -105,9 +104,9 @@ WSGI_APPLICATION = 'Cienciometrico.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cienciometricov',
+        'NAME': 'cienciometrico',
         'USER': 'postgres',
-        'PASSWORD': '1724542103',
+        'PASSWORD': '1727500363',
         'HOST': 'localhost',
         'PORT': 5432,
     }
@@ -165,4 +164,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL= reverse_lazy('inicio:logeo')
-LOGOUT_REDIRECT_URL= reverse_lazy('iniciop:principal')
+LOGOUT_REDIRECT_URL= reverse_lazy('login')

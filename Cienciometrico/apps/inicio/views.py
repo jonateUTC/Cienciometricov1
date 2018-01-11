@@ -16,4 +16,5 @@ def inicio(request):
         priv = roles5.privilegios.all()
         for pr in priv:
             privilegios.append(pr.codename)
-    return render(request, 'base1/inicio.html', {'usuario': privilegios})
+
+    return render(request, 'base1/inicio.html', {'usuario': privilegios,'roles':roles})

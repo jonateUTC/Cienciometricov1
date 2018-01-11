@@ -10,3 +10,8 @@ class Registrorol(forms.ModelForm):
             'privilegios',
 
         ]
+        widgets = {
+            'Nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'privilegios': forms.CheckboxSelectMultiple(),
+
+        }

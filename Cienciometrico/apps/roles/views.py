@@ -3,10 +3,34 @@ from django.views.generic import CreateView
 from apps.roles.models import Rol
 from apps.roles.form import Registrorol
 from django.core.urlresolvers import reverse_lazy
-
+from apps.perfiles.models import Perfil
+from apps.roles.models import Rol
 # Create your views here.
 class RegistroRol(CreateView):
     model = Rol
     template_name = "roles/rol_crear.html"
     form_class = Registrorol
     success_url = reverse_lazy('roles:crear_rol')
+
+    def get_context_data(self, **kwargs):
+        persona = Perfil.objects.all()  # Esto si retorna un QuerySet
+        exi = persona.exists()
+        if exi == 'True':
+            context = super(RegistroRol, self).get_context_data(**kwargs)
+            usuario = self.request.user.id
+            perfil = Perfil.objects.get(user_id=usuario)
+            roles = perfil.roles.all()
+            privi = []
+            privilegios = []
+            for r in roles:
+                privi.append(r.id)
+            for p in privi:
+                roles5 = Rol.objects.get(pk=p)
+                priv = roles5.privilegios.all()
+                for pr in priv:
+                    privilegios.append(pr.codename)
+            context['usuario'] = privilegios
+            return context
+        else:
+            context = super(RegistroRol, self).get_context_data(**kwargs)
+            return context
