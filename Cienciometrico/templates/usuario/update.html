@@ -7,11 +7,17 @@
     <title>Title</title>
 	{% block extrastatic %}
 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAiVBq0HNzpFaQrKvjWzHP862amAuwGnE0"></script>
-	{% endblock %}
+        <script>
+function hola() {
+    var x = document.getElementById("myselect").value;
+    document.getElementById("gen").value = x;
+}
+</script>
+    {% endblock %}
 
 
 </head>
-<body >
+<body onload="myFunction()">
     {% block home %}
     <a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
     {% endblock %}
@@ -22,7 +28,7 @@
 <form method="post">
 	{% csrf_token %}
 	 <div  class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
-     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-plus"></span> NUEVO <span style="color:#FC9C30">USUARIO</span> </h2>
+     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-edit"></span> ACTUALIZAR <span style="color:#FC9C30">USUARIO</span> </h2>
         <div style="float:right;">
             <strong style="color:white;font-size:100%">Bienvenido/</strong>
             <strong style="color:white;font-size:100%">{{user.username}}/</strong>
@@ -35,12 +41,12 @@
 	<div class="content">
 		<div class="col-md-9 col-md-offset-2">
 		<label >Cedula:</label>
-        <input type="text" name="Cedula" class="form-control" >
+        <input type="text" name="Cedula" class="form-control" value="{{perfil.Cedula}}">
 	</div>
 	<div class="content">
 		<div class="col-md-9 col-md-offset-2">
 		<label >Dirección:</label>
-		<input type="text" name="Direccion" class="form-control" id="address1" >
+		<input type="text" name="Direccion" class="form-control" id="address1" value="{{perfil.Direccion}}">
 	</div>
 	<div class="content">
                    <div class="col-md-9 col-md-offset-2">
@@ -48,13 +54,13 @@
 				  <input type="button"   class="btn btn-success" value="Obtener Direccion" onclick="codeLatLng()" >
                   <br>
 
-                 <input id="latlng" value="-0.917476, -78.632573"  style="display:none" type="text" name="Coordenadas" class="form-control" >
+                 <input id="latlng" value="{{perfil.Coordenadas}}"  style="display:none" type="text" name="Coordenadas" class="form-control" >
 					   <br>
 	</div>
 	<div class="row">
 		<div class="col-md-9 col-md-offset-2">
 			<div class="form-group">
-                 <div align="center" id="map_canvas" style="width: 900px; height: 300px;">
+                 <div align="center" id="map_canvas" style="width: 900px; height: 300px;" >
             </div>
 		</div>
         </div>
@@ -62,12 +68,13 @@
 	<div class="content">
                    <div class="col-md-9 col-md-offset-2">
                   <label >Telefono:</label>
-                 <input type="number" name="Telefono" class="form-control" >
+                 <input type="number" name="Telefono" class="form-control" value="{{perfil.Telefono}}" >
 	</div>
 	<div class="content">
                    <div class="col-md-9 col-md-offset-2">
                   <label >Género:</label>
-                 <select name="Genero" class="form-control" >
+                       <input id="gen" type="text" name="Genero" class="form-control" style="display:none" value="{{perfil.Genero}}" >
+                    <select id="myselect" class="form-control" onchange="hola()">
 
                             <option value="Masculino" >Masculino</option>
 
@@ -76,10 +83,11 @@
 
                     </select>
 	</div>
+
 	<div class="content">
                    <div class="col-md-9 col-md-offset-2">
                   <label >Ciudadania:</label>
-                 <input type="text" name="Ciudadania" class="form-control" >
+                 <input type="text" name="Ciudadania" class="form-control" value="{{perfil.Ciudadania}}" >
 	</div>
 	<div class="content">
                    <div class="col-md-9 col-md-offset-2">
@@ -89,33 +97,34 @@
 	<div class="content">
                    <div class="col-md-9 col-md-offset-2">
                   <label >Usuario:</label>
-                 <input type="text" name="username" class="form-control" >
+                 <input type="text" name="username" class="form-control" value="{{user.username}}">
 	</div>
-	<div class="content">
+	<div class="content" style="display:none">
                    <div class="col-md-9 col-md-offset-2">
                   <label >Contraseña:</label>
-                 <input type="password" name="password" class="form-control" >
+                 <input type="password" name="password" class="form-control" value="{{user.password}}" >
 	</div>
+     </div>
 	<div class="content">
                    <div class="col-md-9 col-md-offset-2">
                   <label >Nombres:</label>
-                 <input type="text" name="first_name" class="form-control" >
+                 <input type="text" name="first_name" class="form-control" value="{{user.first_name}}">
 	</div>
 	<div class="content">
                    <div class="col-md-9 col-md-offset-2">
                   <label >Apellidos:</label>
-                 <input type="text" name="last_name" class="form-control" >
+                 <input type="text" name="last_name" class="form-control" value="{{user.last_name}}">
 	</div>
 	<div class="content">
                    <div class="col-md-9 col-md-offset-2">
                   <label >Correo Electrónico:</label>
-                 <input type="email" name="email" class="form-control" >
+                 <input type="email" name="email" class="form-control" value="{{user.email}}">
 					   <br><br>
 	</div>
 	<div class="content">
                    <div class="col-md-9 col-md-offset-2">
 
-                 <input type="checkbox" style="display:none" checked name="is_staff" class="form-control" >
+                 <input type="checkbox" style="display:none" checked name="is_staff" class="form-control">
 	</div>
 
 	<div class="content">

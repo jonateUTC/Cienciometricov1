@@ -28,7 +28,8 @@ footer {
 		background-color: #009688 !important;
 		}
 	</style>
-	<body onload="codeLatLng()">
+
+	<body onload="codeLatLng()" >
 
 		{% block navbar %}
 		<div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px; background:#E7F1F0; " id="mySidebar">
@@ -40,6 +41,7 @@ footer {
             {% block rol %}
 	<a href="{% url 'roles:crear_rol' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/roles.png' %}"> Rol</a>
 	{% endblock %}
+            {{usuario}}
             {% block usuario %}
                 <a href="{% url 'usuario:registrar' %}" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/User.png' %}"> Usuario</a>
             {% endblock %}

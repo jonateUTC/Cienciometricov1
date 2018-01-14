@@ -26,7 +26,9 @@ class RegistroForm(forms.ModelForm):
             'Ciudadania': 'Ciudadania',
             'roles': 'Roles',
         }
+
         widgets = {
+
             'Cedula': forms.TextInput(attrs={'class': 'form-control'}),
             'Direccion': forms.TextInput(attrs={'class': 'form-control'}),
             'Coordenadas': forms.TextInput(attrs={'class': 'form-control'}),
