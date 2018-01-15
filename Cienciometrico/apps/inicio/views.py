@@ -21,4 +21,4 @@ def inicio(request):
         if i not in privilegio:
             privilegio.append(i)
 
-    return render(request, 'base1/inicio.html', {'usuario': privilegio,'roles':roles})
+    return render(request, 'base1/inicio.html', {'usuario': privilegio})

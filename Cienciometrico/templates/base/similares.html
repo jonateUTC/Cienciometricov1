@@ -151,6 +151,15 @@
 		                       	 </thead>
 
 		                       	 <tbody>
+								 {% for p in usuario %}
+								 <tr>
+								 <td>{{p.id}}</td>
+								 <td>{{p.Genero}}</td>
+								 <td>{{p.user.first_name}}</td>
+								 <td>{{p.user.last_name}}</td>
+								 <td>{{p.user.email}}</td>
+								 </tr>
+								 {% endfor%}
 
 			                       	 				                      </tbody>
 

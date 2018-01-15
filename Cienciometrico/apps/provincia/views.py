@@ -17,6 +17,7 @@ class ProvinciaList(ListView):
         roles = perfil.roles.all()
         privi = []
         privilegios = []
+        privilegio= []
         for r in roles:
             privi.append(r.id)
         for p in privi:
@@ -24,19 +25,82 @@ class ProvinciaList(ListView):
             priv = roles5.privilegios.all()
             for pr in priv:
                 privilegios.append(pr.codename)
-        context['usuario'] = privilegios
+        for i in privilegios:
+            if i not in privilegio:
+                privilegio.append(i)
+        context['usuario'] = privilegio
         return context
 class ProvinciaCreate(CreateView):
     model = provincia
     form_class = ProvinciaForm
     template_name = 'provincia/provincia_crear.html'
     success_url = reverse_lazy('provincia:provincia_listar')
+    def get_context_data(self, **kwargs):
+        context = super(ProvinciaCreate, self).get_context_data(**kwargs)
+        usuario = self.request.user.id
+        perfil = Perfil.objects.get(user_id=usuario)
+        roles = perfil.roles.all()
+        privi = []
+        privilegios = []
+        privilegio= []
+        for r in roles:
+            privi.append(r.id)
+        for p in privi:
+            roles5 = Rol.objects.get(pk=p)
+            priv = roles5.privilegios.all()
+            for pr in priv:
+                privilegios.append(pr.codename)
+        for i in privilegios:
+            if i not in privilegio:
+                privilegio.append(i)
+        context['usuario'] = privilegio
+        return context
 class ProvinciaUpdate(UpdateView):
     model = provincia
     form_class = ProvinciaForm
     template_name = 'provincia/provincia_update.html'
     success_url = reverse_lazy('provincia:provincia_listar')
+    def get_context_data(self, **kwargs):
+        context = super(ProvinciaUpdate, self).get_context_data(**kwargs)
+        usuario = self.request.user.id
+        perfil = Perfil.objects.get(user_id=usuario)
+        roles = perfil.roles.all()
+        privi = []
+        privilegios = []
+        privilegio= []
+        for r in roles:
+            privi.append(r.id)
+        for p in privi:
+            roles5 = Rol.objects.get(pk=p)
+            priv = roles5.privilegios.all()
+            for pr in priv:
+                privilegios.append(pr.codename)
+        for i in privilegios:
+            if i not in privilegio:
+                privilegio.append(i)
+        context['usuario'] = privilegio
+        return context
 class ProvinciaDelete(DeleteView):
     model = provincia
     template_name = 'provincia/provincia_delete.html'
     success_url = reverse_lazy('provincia:provincia_listar')
+    def get_context_data(self, **kwargs):
+        context = super(ProvinciaDelete, self).get_context_data(**kwargs)
+        usuario = self.request.user.id
+        perfil = Perfil.objects.get(user_id=usuario)
+        roles = perfil.roles.all()
+        privi = []
+        privilegios = []
+        privilegio= []
+        for r in roles:
+            privi.append(r.id)
+        for p in privi:
+            roles5 = Rol.objects.get(pk=p)
+            priv = roles5.privilegios.all()
+            for pr in priv:
+                privilegios.append(pr.codename)
+        for i in privilegios:
+            if i not in privilegio:
+                privilegio.append(i)
+        context['usuario'] = privilegio
+        return context

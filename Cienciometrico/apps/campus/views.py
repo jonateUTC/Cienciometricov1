@@ -21,6 +21,7 @@ class CampusList(ListView):
         roles = perfil.roles.all()
         privi = []
         privilegios = []
+        privilegio = []
         for r in roles:
             privi.append(r.id)
         for p in privi:
@@ -28,12 +29,31 @@ class CampusList(ListView):
             priv = roles5.privilegios.all()
             for pr in priv:
                 privilegios.append(pr.codename)
-        context['usuario'] = privilegios
+        for i in privilegios:
+            if i not in privilegio:
+                privilegio.append(i)
+        context['usuario'] = privilegio
         return context
 def CampusCreate(request):
     Pais = pais.objects.all()
     Zona = zona.objects.all()
     Provincia = provincia.objects.all()
+    usuario = request.user.id
+    perfil = Perfil.objects.get(user_id=usuario)
+    roles = perfil.roles.all()
+    privi = []
+    privilegios = []
+    privilegio = []
+    for r in roles:
+        privi.append(r.id)
+    for p in privi:
+        roles5 = Rol.objects.get(pk=p)
+        priv = roles5.privilegios.all()
+        for pr in priv:
+            privilegios.append(pr.codename)
+    for i in privilegios:
+        if i not in privilegio:
+            privilegio.append(i)
     if request.method == 'POST':
         form= CampusForm(request.POST)
         if form.is_valid():
@@ -41,12 +61,27 @@ def CampusCreate(request):
         return redirect('campus:campus_listar')
     else:
         form= CampusForm()
-    return render(request,'campus/campus_crear.html',{'form':form,'Pais': Pais,'Zona': Zona, 'Provincia':Provincia})
+    return render(request,'campus/campus_crear.html',{'form':form,'Pais': Pais,'Zona': Zona, 'Provincia':Provincia, 'usuario': privilegio})
 def Campus_edit(request, id_campus):
     Pais = pais.objects.all()
     Zona = zona.objects.all()
     Provincia = provincia.objects.all()
-
+    usuario = request.user.id
+    perfil = Perfil.objects.get(user_id=usuario)
+    roles = perfil.roles.all()
+    privi = []
+    privilegios = []
+    privilegio = []
+    for r in roles:
+        privi.append(r.id)
+    for p in privi:
+        roles5 = Rol.objects.get(pk=p)
+        priv = roles5.privilegios.all()
+        for pr in priv:
+            privilegios.append(pr.codename)
+    for i in privilegios:
+        if i not in privilegio:
+            privilegio.append(i)
     camp = campus.objects.get(id=id_campus)
     if request.method == 'GET':
         form= CampusForm(instance=camp)
@@ -55,8 +90,28 @@ def Campus_edit(request, id_campus):
         if form.is_valid():
             form.save()
         return redirect('campus:campus_listar')
-    return render(request,'campus/campus_update.html',{'form':form,'Pais': Pais,'Zona': Zona, 'Provincia':Provincia})
+    return render(request,'campus/campus_update.html',{'form':form,'Pais': Pais,'Zona': Zona, 'Provincia':Provincia, 'usuario': privilegio})
 class CampusDelete(DeleteView):
     model = campus
     template_name = 'campus/campus_delete.html'
     success_url = reverse_lazy('campus:campus_listar')
+    def get_context_data(self, **kwargs):
+        context = super(CampusDelete, self).get_context_data(**kwargs)
+        usuario = self.request.user.id
+        perfil = Perfil.objects.get(user_id=usuario)
+        roles = perfil.roles.all()
+        privi = []
+        privilegios = []
+        privilegio = []
+        for r in roles:
+            privi.append(r.id)
+        for p in privi:
+            roles5 = Rol.objects.get(pk=p)
+            priv = roles5.privilegios.all()
+            for pr in priv:
+                privilegios.append(pr.codename)
+        for i in privilegios:
+            if i not in privilegio:
+                privilegio.append(i)
+        context['usuario'] = privilegio
+        return context
