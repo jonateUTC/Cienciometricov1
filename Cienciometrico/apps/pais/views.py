@@ -19,6 +19,7 @@ class PaisList(ListView):
         roles = perfil.roles.all()
         privi = []
         privilegios = []
+        privilegio = []
         for r in roles:
             privi.append(r.id)
         for p in privi:
@@ -26,7 +27,10 @@ class PaisList(ListView):
             priv = roles5.privilegios.all()
             for pr in priv:
                 privilegios.append(pr.codename)
-        context['usuario'] = privilegios
+        for i in privilegios:
+            if i not in privilegio:
+                privilegio.append(i)
+        context['usuario'] = privilegio
         return context
 
 class PaisCreate(CreateView):
@@ -34,12 +38,72 @@ class PaisCreate(CreateView):
     form_class = PaisForm
     template_name = 'pais/pais_crear.html'
     success_url = reverse_lazy('pais:pais_listar')
+    def get_context_data(self, **kwargs):
+        context = super(PaisCreate, self).get_context_data(**kwargs)
+        usuario = self.request.user.id
+        perfil = Perfil.objects.get(user_id=usuario)
+        roles = perfil.roles.all()
+        privi = []
+        privilegios = []
+        privilegio = []
+        for r in roles:
+            privi.append(r.id)
+        for p in privi:
+            roles5 = Rol.objects.get(pk=p)
+            priv = roles5.privilegios.all()
+            for pr in priv:
+                privilegios.append(pr.codename)
+        for i in privilegios:
+            if i not in privilegio:
+                privilegio.append(i)
+        context['usuario'] = privilegio
+        return context
 class PaisUpdate(UpdateView):
     model = pais
     form_class = PaisForm
     template_name = 'pais/pais_update.html'
     success_url = reverse_lazy('pais:pais_listar')
+    def get_context_data(self, **kwargs):
+        context = super(PaisUpdate, self).get_context_data(**kwargs)
+        usuario = self.request.user.id
+        perfil = Perfil.objects.get(user_id=usuario)
+        roles = perfil.roles.all()
+        privi = []
+        privilegios = []
+        privilegio = []
+        for r in roles:
+            privi.append(r.id)
+        for p in privi:
+            roles5 = Rol.objects.get(pk=p)
+            priv = roles5.privilegios.all()
+            for pr in priv:
+                privilegios.append(pr.codename)
+        for i in privilegios:
+            if i not in privilegio:
+                privilegio.append(i)
+        context['usuario'] = privilegio
+        return context
 class PaisDelete(DeleteView):
     model = pais
     template_name = 'pais/pais_eliminar.html'
     success_url = reverse_lazy('pais:pais_listar')
+    def get_context_data(self, **kwargs):
+        context = super(PaisDelete, self).get_context_data(**kwargs)
+        usuario = self.request.user.id
+        perfil = Perfil.objects.get(user_id=usuario)
+        roles = perfil.roles.all()
+        privi = []
+        privilegios = []
+        privilegio = []
+        for r in roles:
+            privi.append(r.id)
+        for p in privi:
+            roles5 = Rol.objects.get(pk=p)
+            priv = roles5.privilegios.all()
+            for pr in priv:
+                privilegios.append(pr.codename)
+        for i in privilegios:
+            if i not in privilegio:
+                privilegio.append(i)
+        context['usuario'] = privilegio
+        return context
