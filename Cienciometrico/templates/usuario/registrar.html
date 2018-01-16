@@ -51,11 +51,25 @@
                  <input id="latlng" value="-0.917476, -78.632573"  style="display:none" type="text" name="Coordenadas" class="form-control" >
 					   <br>
 	</div>
+    <div class="row">
+		<div class="col-md-9 col-md-offset-2">
+            <div class="input-group">
+                <input id="add" type="text" class="form-control" value="Quito" >
+                <div class="input-group-btn">
+                    <input type="button" class="btn btn-primary" value="Buscar" onclick="codeAddress()">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 	<div class="row">
 		<div class="col-md-9 col-md-offset-2">
 			<div class="form-group">
-                 <div align="center" id="map_canvas" style="width: 900px; height: 300px;">
-            </div>
+
+                <div align="center" id="map_canvas" style="width: 900px; height: 300px; z-index:0;">
+                </div>
+
 		</div>
         </div>
 	</div>
@@ -182,7 +196,8 @@
                   geocoder.geocode({'latLng': latlng}, function(results, status) {
                   if (status == google.maps.GeocoderStatus.OK) {
                    if (results[0]) {
-                     map.fitBounds(results[0].geometry.viewport);
+
+                     map.setCenter(results[0].geometry.viewport);
                              marker.setMap(map);
                              marker.setPosition(latlng);
                      $('#address').text(results[0].formatted_address);
@@ -209,6 +224,21 @@
                   gmaps_ads();
 
                   });
+                  function codeAddress() {
+                        var address = document.getElementById('add').value;
+                        geocoder.geocode( { 'address': address}, function(results, status) {
+                            if (status == 'OK') {
+                                map.setCenter(results[0].geometry.location);
+                                marker.setMap(map);
+                                marker.setPosition(results[0].geometry.location);
+                                var markerLtLg = marker.getPosition();
+                                document.getElementById('latlng').value=markerLtLg.lat()+','+markerLtLg.lng();
+
+                            } else {
+                                alert('Geocode was not successful for the following reason: ' + status);
+                            }
+                        });
+                  }
                </script>
                <script>
                function showContent() {
@@ -258,6 +288,9 @@
         }
     }
                </script>
+        <script>
+
+        </script>
 
 </form>
 {% endblock %}

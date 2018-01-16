@@ -87,7 +87,10 @@ class ActualizarUsuario(UpdateView):
     second_form_class = UserForm
     success_url = reverse_lazy('usuario:registrar')
     def get_context_data(self, **kwargs):
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6d1b1c022b48655f5169c18189201b07c370767d
             context = super(ActualizarUsuario, self).get_context_data(**kwargs)
             pk = self.kwargs.get('pk', 0)
             perfil = self.model.objects.get(id=pk)
