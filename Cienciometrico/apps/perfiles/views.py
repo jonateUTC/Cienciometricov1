@@ -1,3 +1,4 @@
+from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render, HttpResponseRedirect
 from apps.perfiles.models import Perfil
 from apps.roles.models import Rol
@@ -59,6 +60,20 @@ class RegistroUsuario(CreateView):
                    perfil.user.save()
                    perfil.save()
                    form.save_m2m()
+                   data = form2.cleaned_data
+                   usu = data['username']
+                   passw = data['password']
+                   subject = 'Usuario creado exitosamente'
+                   text_content = 'This is an important message.'
+                   html_content = '<p>Username:<strong>' + usu + '</strong></p><p>Password:<strong>' + passw + '</strong></p>'
+                   msg = EmailMultiAlternatives(
+                       subject,
+                       text_content,
+                       'admin@mail.com',  # FROM
+                       [data['email']]
+                   )
+                   msg.attach_alternative(html_content, "text/html")
+                   msg.send()
                    return HttpResponseRedirect(self.get_success_url())
               else:
                    return self.render_to_response(self.get_context_data(form=form, form2=form2))
@@ -72,9 +87,7 @@ class ActualizarUsuario(UpdateView):
     second_form_class = UserForm
     success_url = reverse_lazy('usuario:registrar')
     def get_context_data(self, **kwargs):
-        persona = Perfil.objects.all()  # Esto si retorna un QuerySet
-        exi = persona.exists()
-        if exi == 'True':
+
             context = super(ActualizarUsuario, self).get_context_data(**kwargs)
             pk = self.kwargs.get('pk', 0)
             perfil = self.model.objects.get(id=pk)
@@ -102,9 +115,7 @@ class ActualizarUsuario(UpdateView):
                 context['form2'] = self.second_form_class(instance=usuario)
             context['id'] = pk
             return context
-        else:
-            context = super(ActualizarUsuario, self).get_context_data(**kwargs)
-            return context
+
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object
@@ -121,6 +132,7 @@ class ActualizarUsuario(UpdateView):
             perfil.user.save()
             perfil.save()
             form.save_m2m()
+
             return HttpResponseRedirect(self.get_success_url())
         else:
             return self.render_to_response(self.get_context_data(form=form, form2=form2))
