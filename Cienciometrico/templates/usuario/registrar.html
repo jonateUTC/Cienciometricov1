@@ -7,7 +7,8 @@
     <title>Title</title>
 	{% block extrastatic %}
 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAiVBq0HNzpFaQrKvjWzHP862amAuwGnE0"></script>
-	{% endblock %}
+
+    {% endblock %}
 
 
 </head>
@@ -19,6 +20,7 @@
 	<a href="{% url 'usuario:registrar' %}" id="uno" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/User.png' %}"> Usuario</a>
 	{% endblock %}
 	{% block content %}
+    <div class="container">
 <form method="post">
 	{% csrf_token %}
 	 <div  class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
@@ -37,11 +39,57 @@
 		<label >Cedula:</label>
         <input type="text" name="Cedula" class="form-control" >
 	</div>
+    </div>
+        <div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Nombres:</label>
+                 <input type="text" name="first_name" class="form-control" >
+	</div>
+          </div>
+	<div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Apellidos:</label>
+                 <input type="text" name="last_name" class="form-control" >
+	</div>
+        </div>
+	<div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Correo Electrónico:</label>
+                 <input type="email" name="email" class="form-control" >
+
+	</div>
+        </div>
+    <div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Telefono:</label>
+                 <input type="number" name="Telefono" class="form-control" >
+	</div>
+        </div>
+	<div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Género:</label>
+                 <select name="Genero" class="form-control" >
+
+                            <option value="Masculino" >Masculino</option>
+
+                            <option value="Femenino" >Femenino</option>
+
+
+                    </select>
+	</div>
+        </div>
+	<div class="content">
+                   <div class="col-md-9 col-md-offset-2">
+                  <label >Ciudadania:</label>
+                 <input type="text" name="Ciudadania" class="form-control" >
+	</div>
+        </div>
 	<div class="content">
 		<div class="col-md-9 col-md-offset-2">
 		<label >Dirección:</label>
 		<input type="text" name="Direccion" class="form-control" id="address1" >
 	</div>
+        </div>
 	<div class="content">
                    <div class="col-md-9 col-md-offset-2">
                   <label >Coordenadas:</label><br>
@@ -51,10 +99,11 @@
                  <input id="latlng" value="-0.917476, -78.632573"  style="display:none" type="text" name="Coordenadas" class="form-control" >
 					   <br>
 	</div>
+        </div>
     <div class="row">
 		<div class="col-md-9 col-md-offset-2">
             <div class="input-group">
-                <input id="add" type="text" class="form-control" value="Quito" >
+                <input id="add" type="text" class="form-control"  >
                 <div class="input-group-btn">
                     <input type="button" class="btn btn-primary" value="Buscar" onclick="codeAddress()">
                 </div>
@@ -73,64 +122,33 @@
 		</div>
         </div>
 	</div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Telefono:</label>
-                 <input type="number" name="Telefono" class="form-control" >
-	</div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Género:</label>
-                 <select name="Genero" class="form-control" >
 
-                            <option value="Masculino" >Masculino</option>
-
-                            <option value="Femenino" >Femenino</option>
-
-
-                    </select>
-	</div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Ciudadania:</label>
-                 <input type="text" name="Ciudadania" class="form-control" >
-	</div>
 	<div class="content">
                    <div class="col-md-9 col-md-offset-2">
                   <label >Roles:</label>
 				  {{form.roles}}
 	</div>
+        </div>
 	<div class="content">
                    <div class="col-md-9 col-md-offset-2">
                   <label >Usuario:</label>
                  <input type="text" name="username" class="form-control" >
 	</div>
+        </div>
 	<div class="content">
+        {{ form.new_password2.errors }}
                    <div class="col-md-9 col-md-offset-2">
                   <label >Contraseña:</label>
                  <input type="password" name="password" class="form-control" >
 	</div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Nombres:</label>
-                 <input type="text" name="first_name" class="form-control" >
-	</div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Apellidos:</label>
-                 <input type="text" name="last_name" class="form-control" >
-	</div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Correo Electrónico:</label>
-                 <input type="email" name="email" class="form-control" >
-					   <br><br>
-	</div>
+        </div>
+
 	<div class="content">
                    <div class="col-md-9 col-md-offset-2">
 
                  <input type="checkbox" style="display:none" checked name="is_staff" class="form-control" >
 	</div>
+        </div>
 
 	<div class="content">
 		<div class="col-md-8 col-md-offset-2">
@@ -139,6 +157,8 @@
 			</div>
 		</div>
 	</div>
+
+
 	<script type='text/javascript'>
                   var geocoder;
                   var map;
@@ -235,7 +255,7 @@
                                 document.getElementById('latlng').value=markerLtLg.lat()+','+markerLtLg.lng();
 
                             } else {
-                                alert('Geocode was not successful for the following reason: ' + status);
+                                alert('Localización no tuvo éxito por la siguiente razón: ' + status);
                             }
                         });
                   }
@@ -293,6 +313,16 @@
         </script>
 
 </form>
+         {% for message in messages %}
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+{% endfor %}
+</div>
 {% endblock %}
+
 </body>
 </html>

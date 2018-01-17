@@ -23,6 +23,16 @@ footer {
      <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/inputTags.jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+    <script>
+     $(document).ready( function () {
+      $("input").on("keypress", function () {
+       $input=$(this);
+       setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+       });
+      })
+     })
+    </script>
     <style>
 		#uno {
 		background-color: #009688 !important;

@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
+from django.contrib import messages
 # Create your views here.
 class RegistroUsuario(CreateView):
         model = Perfil
@@ -74,8 +75,11 @@ class RegistroUsuario(CreateView):
                    )
                    msg.attach_alternative(html_content, "text/html")
                    msg.send()
+                   messages.success(request,('Se ha registrado satisfactoriamente'),extra_tags='alert')
                    return HttpResponseRedirect(self.get_success_url())
+
               else:
+                   messages.error(request,('Por favor registrese nuevamente'))
                    return self.render_to_response(self.get_context_data(form=form, form2=form2))
 
 
