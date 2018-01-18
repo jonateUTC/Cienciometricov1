@@ -5,6 +5,28 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <link rel="stylesheet" href="static/css/animate.min.css">
+<script>
+        function zonapais() {
+            document.getElementById("zona").innerHTML = "";
+            var v=document.getElementById("pais").value;
+            var option = document.createElement("option");
+            option.text = "--SELECCIONE--";
+            document.getElementById("zona").add(option);
+            {% for z in  Zona%}
+                var id_pais={{z.pais.id}}
+
+                if(v==id_pais){
+
+                    var op = document.createElement("option");
+                    op.value = "{{z.pk}}";
+                    op.text = "{{z.Nombre}}";
+                    document.getElementById("zona").appendChild(op);
+                }
+            {% endfor %}
+
+        }
+
+    </script>
 {% endblock %}
  {% block home %}
     <a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
@@ -21,10 +43,32 @@
         </div>
     <br>
 	<div class="container">
-		<div class="col-md-9 col-md-offset-2">
+		<div class="col-md-10 col-md-offset-2">
 	<a href="{% url 'provincia:provincia_listar' %}" class="btn btn-primary  pull-right"><i class="glyphicon glyphicon-eye-open"></i> Ver Todos</a>
 		</div>
 		</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label>País</label>
+                <select class="form-control" id="pais" onchange="zonapais()">
+                    <option>--Seleccione--</option>
+                    {% for p in  Pais%}
+                    <option value="{{ p.pk }}">{{p.Nombre}}</option>
+
+                    {% endfor %}
+                </select>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label>Zona</label>
+                {{ form.zona}}
+			</div>
+		</div>
+	</div>
     <div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="form-group">
@@ -33,22 +77,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="form-group">
-				<label for="{{form.pais.Nombre}}">{{form.pais.label}}</label>
-				{{form.pais}}
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="form-group">
-				<label for="{{form.zona.Nombre}}">{{form.zona.label}}</label>
-				{{form.zona}}
-			</div>
-		</div>
-	</div>
+
 
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">

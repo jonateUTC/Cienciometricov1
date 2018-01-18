@@ -10,6 +10,12 @@
 <html lang="en">
 <head>
 	{% block extrastatic %}
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="static/css/animate.min.css">
+
 <script>
         function paises() {
             document.getElementById("zona").innerHTML = "";
@@ -164,7 +170,7 @@
 	</div>
    <div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<div class="form-group">
+			<div class="form-group input-field">
 				<label>Nombre de Carrera </label>
 				<input class="form-control" type="text" name="Nombre">
 			</div>
@@ -172,7 +178,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<div class="form-group">
+			<div class="form-group input-field">
 				<label >Director de la Carrera</label>
 				<input class="form-control" type="text" name="Director">
 			</div>

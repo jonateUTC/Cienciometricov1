@@ -1,5 +1,11 @@
 {% extends 'base1/inicio.html' %}
 {% load staticfiles %}
+{% block extrastatic %}
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="static/css/animate.min.css">
+{% endblock %}
     {% block home %}
     <a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
     {% endblock %}
@@ -17,13 +23,13 @@
             </div>
 </div>
     <br>
-<div class="container">
+<div class="container" style="width:90%;">
     <div class="col-md-8 col-md-offset-2">
 <a href="{% url 'Revista:create_Revista' %}" class="btn btn-primary  pull-right "><i class="glyphicon glyphicon-plus"></i> Nuevas revista</a>
     </div>
      </div>
 <br>
-<div align="center" class="row" style="">
+<div align="center" class="row" style="width:90%;">
 <div class="table-responsive">
 <table class="table table-bordered" style="text-align:center; width:60%; ">
 	<thead >

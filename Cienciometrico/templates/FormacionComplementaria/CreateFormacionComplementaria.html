@@ -1,5 +1,11 @@
 {% extends 'base1/inicio.html'%}
 {% load staticfiles %}
+{% block extrastatic %}
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="static/css/animate.min.css">
+{% endblock %}
     {% block home %}
     <a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
     {% endblock %}
@@ -28,7 +34,7 @@
 		</div>
    <div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<div class="form-group">
+			<div class="form-group input-field">
 				<label>Titulo Adquirido </label>
 				<input class="form-control" type="text" name="Nivel_Estudios">
 			</div>
@@ -36,15 +42,15 @@
 	</div>
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<div class="form-group">
+			<div class="form-group input-field">
 				<label >Fecha Finalizacion</label>
-				<input class="form-control" type="date" name="Fecha_Fin">
+				<input class="datepicker" type="date" name="Fecha_Fin">
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<div class="form-group">
+			<div class="form-group input-field">
 				<label >Centro donde se cursó</label>
 				<input class="form-control" type="text" name="Nombre_Centro_Estudios">
 			</div>

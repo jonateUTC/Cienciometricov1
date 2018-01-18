@@ -1,5 +1,11 @@
 {% extends 'base1/inicio.html'%}
 {% load staticfiles %}
+{% block extrastatic %}
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="static/css/animate.min.css">
+{% endblock %}
     {% block home %}
     <a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
     {% endblock %}
@@ -31,47 +37,47 @@
 
 
                <div class="row">
-                   <div class="col-md-9 col-md-offset-2">
+                   <div class="col-md-9 col-md-offset-2 input-field">
                   <label >Nombre:</label>
                  <input type="text" name="Nombre" class="form-control" >
                </div>
  </div>
                 <div class="row">
-                    <div class="col-md-9 col-md-offset-2">
+                    <div class="col-md-9 col-md-offset-2 input-field">
                  <label >Numero:</label>
                     <input type="number" name="Numero" class="form-control" >
                </div> </div>
 
          <div class="row">
-             <div class="col-md-9 col-md-offset-2">
+             <div class="col-md-9 col-md-offset-2 input-field">
                        <label >Estado:</label>
                         <input type="text" name="Estado" class="form-control">
                      </div> </div>
               <div class="row">
-                  <div class="col-md-9 col-md-offset-2">
+                  <div class="col-md-9 col-md-offset-2 input-field">
                   <label >Año:</label>
                  <input type="text" name="Anio" class="form-control" >
               </div> </div>
              <div class="row">
-                 <div class="col-md-9 col-md-offset-2">
+                 <div class="col-md-9 col-md-offset-2 input-field">
                   <label >  ISSN:</label>
                   <input type="number" name="ISSN" class="form-control" >
                      </div></div>
 
              <div class="row">
-                 <div class="col-md-9 col-md-offset-2">
+                 <div class="col-md-9 col-md-offset-2 input-field">
                               <label >Base Datos:</label>
                   <input type="text" name="Base_Datos" class="form-control">
                            </div></div>
              <div class="row">
-                 <div class="col-md-9 col-md-offset-2">
+                 <div class="col-md-9 col-md-offset-2 input-field">
                               <label >URL</label>
                              <input type="url" name="Url" class="form-control">
                            </div></div>
                <div class="row">
-                    <div class="col-md-9 col-md-offset-2">
+                    <div class="col-md-9 col-md-offset-2 input-field">
                               <label >Fecha Publicacion</label>
-                            <input type="date" name="Fecha_Publicacion" class="form-control" >
+                            <input type="date" name="Fecha_Publicacion" class="datepicker" >
                            </div></div>
 
             <div class="row">

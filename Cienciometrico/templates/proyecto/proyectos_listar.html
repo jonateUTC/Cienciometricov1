@@ -1,5 +1,11 @@
 {% extends 'base1/inicio.html'%}
 {% load staticfiles %}
+{% block extrastatic %}
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="static/css/animate.min.css">
+{% endblock %}
     {% block home %}
     <a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
     {% endblock %}
@@ -18,7 +24,7 @@
         </div>
     <br>
 <div class="container">
-<a href="{% url 'proyecto:proyectos_crear' %}" class="btn btn-primary  pull-right "><i class="glyphicon glyphicon-plus"></i> Nueva Proyecto</a>
+<a href="{% url 'proyecto:proyectos_crear' %}" class="btn btn-primary  pull-right "><i class="glyphicon glyphicon-plus"></i> Nuevo Proyecto</a>
     </div>
 <br>
 <div class="container" align="center">
@@ -59,7 +65,7 @@
         {% endfor %}
 
         {% else %}
-        <h1>No hay registros de Investigaciones</h1>
+        <h1>No hay registros de Proyectos</h1>
         {% endif %}
 
 	</tbody>

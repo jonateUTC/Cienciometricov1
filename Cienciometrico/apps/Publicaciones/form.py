@@ -32,7 +32,7 @@ class formPublicaciones(forms.ModelForm):
             'investigador': forms.Select(attrs={'class':'form-control'}),
             'Palabras_Clave':forms.TextInput(attrs={'class':'form-control','id':'tags'}),
             'Resumen': forms.FileInput(attrs={'class':'form-control'}),
-            'Fecha': forms.DateInput(attrs={'class':'form-control','placeholder':'6/1/2018','title':'Ejemplo de Fecha : 6/1/2018'}),
+            'Fecha': forms.DateInput(attrs={'class':'datepicker','placeholder':'6/1/2018','title':'Ejemplo de Fecha : 6/1/2018'}),
             'Editorial': forms.TextInput(attrs={'class':'form-control'}),
             'DB_Indexada': forms.TextInput(attrs={'class':'form-control'}),
             'Url': forms.URLInput(attrs={'class': 'form-control'}),

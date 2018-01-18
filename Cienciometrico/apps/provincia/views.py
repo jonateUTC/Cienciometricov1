@@ -5,6 +5,8 @@ from apps.provincia.models import provincia
 from django.views.generic import ListView, CreateView,UpdateView,DeleteView
 from apps.perfiles.models import Perfil
 from apps.roles.models import Rol
+from apps.pais.models import pais
+from apps.zona.models import zona
 # Create your views here.
 class ProvinciaList(ListView):
     model = provincia
@@ -37,6 +39,9 @@ class ProvinciaCreate(CreateView):
     success_url = reverse_lazy('provincia:provincia_listar')
     def get_context_data(self, **kwargs):
         context = super(ProvinciaCreate, self).get_context_data(**kwargs)
+        Pais = pais.objects.all()
+        Zona = zona.objects.all()
+
         usuario = self.request.user.id
         perfil = Perfil.objects.get(user_id=usuario)
         roles = perfil.roles.all()
@@ -54,6 +59,8 @@ class ProvinciaCreate(CreateView):
             if i not in privilegio:
                 privilegio.append(i)
         context['usuario'] = privilegio
+        context['Pais'] = Pais
+        context['Zona'] = Zona
         return context
 class ProvinciaUpdate(UpdateView):
     model = provincia
@@ -62,6 +69,8 @@ class ProvinciaUpdate(UpdateView):
     success_url = reverse_lazy('provincia:provincia_listar')
     def get_context_data(self, **kwargs):
         context = super(ProvinciaUpdate, self).get_context_data(**kwargs)
+        Pais = pais.objects.all()
+        Zona = zona.objects.all()
         usuario = self.request.user.id
         perfil = Perfil.objects.get(user_id=usuario)
         roles = perfil.roles.all()
@@ -79,6 +88,8 @@ class ProvinciaUpdate(UpdateView):
             if i not in privilegio:
                 privilegio.append(i)
         context['usuario'] = privilegio
+        context['Pais'] = Pais
+        context['Zona'] = Zona
         return context
 class ProvinciaDelete(DeleteView):
     model = provincia
