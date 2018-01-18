@@ -1,5 +1,8 @@
 {% extends 'base1/inicio.html' %}
 {% load staticfiles %}
+{% load material_form %}
+{% load widget_tweaks %}
+
 {% block extrastatic %}
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -27,26 +30,18 @@
         </div>
     <br>
 	<div class="container">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-10 col-md-offset-2">
 	<a href="{% url 'pais:pais_listar' %}" class="btn btn-primary  pull-right"><i class="glyphicon glyphicon-eye-open"></i> Ver Todos</a>
 		</div>
 		</div>
     <div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="form-group">
-				<label>Iso</label>
-				<input class="form-control" type="text" name="Iso">
+				{% form form=form %}{% endform %}
 			</div>
 		</div>
 	</div>
-    <div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="form-group">
-				<label>Nombre</label>
-				<input class="form-control" type="text" name="Nombre">
-			</div>
-		</div>
-	</div>
+
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="form-group">

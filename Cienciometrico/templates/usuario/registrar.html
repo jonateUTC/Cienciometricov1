@@ -1,5 +1,8 @@
 {% extends 'base1/inicio.html'%}
 {% load staticfiles %}
+{% load bootstrap %}
+{% load material_form %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +10,18 @@
     <title>Title</title>
 	{% block extrastatic %}
 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAiVBq0HNzpFaQrKvjWzHP862amAuwGnE0"></script>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <script>
+    $(document).ready(function() {
+      $('input[type=checkbox]').each(function() {
+        if(this.nextSibling.nodeName != 'label') {
+          $(this).after('<label for="'+this.id+'"></label>')
+        }
+      })
+    })
+    </script>
 
     {% endblock %}
 
@@ -20,7 +35,7 @@
 	<a href="{% url 'usuario:registrar' %}" id="uno" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/User.png' %}"> Usuario</a>
 	{% endblock %}
 	{% block content %}
-    <div class="container">
+
 <form method="post">
 	{% csrf_token %}
 	 <div  class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
@@ -33,42 +48,45 @@
             </div>
         </div>
     <br>
+  <div class="container">
 
-	<div class="content">
-		<div class="col-md-9 col-md-offset-2">
-		<label >Cedula:</label>
-        <input type="text" name="Cedula" class="form-control" >
-	</div>
-    </div>
-        <div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Nombres:</label>
-                 <input type="text" name="first_name" class="form-control" >
-	</div>
+       <div class="row">
+        <div class="input-field col s12">
+         <label >Cedula:</label>
+        <input id="input_number" type="number" data-length="10" maxlength="10" minlength="10" name="Cedula" class="validate" required>
+        </div>
+
+      </div>
+
+     <div class="row">
+          <div class="input-field col s6">
+              <label >Nombres:</label>
+              <input type="text" name="first_name" class="validate" required >
           </div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Apellidos:</label>
-                 <input type="text" name="last_name" class="form-control" >
-	</div>
-        </div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Correo Electrónico:</label>
-                 <input type="email" name="email" class="form-control" >
+          <div class="input-field col s6">
+              <label >Apellidos:</label>
+              <input type="text" name="last_name" class="validate" required >
+          </div>
 
-	</div>
-        </div>
-    <div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Telefono:</label>
-                 <input type="number" name="Telefono" class="form-control" >
-	</div>
-        </div>
+     </div>
+
+       <div class="row">
+            <div class="input-field col s6">
+              <label >Telefono:</label>
+                 <input type="number" name="Telefono" class="validate" required>
+          </div>
+
+          <div class="input-field col s6">
+              <label >Correo Electrónico:</label>
+                 <input type="email" name="email" class="validate" required>
+          </div>
+
+     </div>
+
 	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
+                   <div class="col-md-14 col-md-offset-">
                   <label >Género:</label>
-                 <select name="Genero" class="form-control" >
+                 <select name="Genero" class="browser-default" >
 
                             <option value="Masculino" >Masculino</option>
 
@@ -78,75 +96,80 @@
                     </select>
 	</div>
         </div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
+
+	 <div class="row">
+        <div class="input-field col s12">
                   <label >Ciudadania:</label>
-                 <input type="text" name="Ciudadania" class="form-control" >
+                 <input type="text" name="Ciudadania" class="validate" required >
 	</div>
         </div>
-	<div class="content">
-		<div class="col-md-9 col-md-offset-2">
+
+      <div class="row">
+            <div class=" col s8">
 		<label >Dirección:</label>
-		<input type="text" name="Direccion" class="form-control" id="address1" >
-	</div>
-        </div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Coordenadas:</label><br>
-				  <input type="button"   class="btn btn-success" value="Obtener Direccion" onclick="codeLatLng()" >
-                  <br>
-
-                 <input id="latlng" value="-0.917476, -78.632573"  style="display:none" type="text" name="Coordenadas" class="form-control" >
-					   <br>
-	</div>
-        </div>
-    <div class="row">
-		<div class="col-md-9 col-md-offset-2">
-            <div class="input-group">
-                <input id="add" type="text" class="form-control"  >
-                <div class="input-group-btn">
-                    <input type="button" class="btn btn-primary" value="Buscar" onclick="codeAddress()">
-                </div>
+		<input type="text" name="Direccion" class="form-control" id="address1" required>
             </div>
-        </div>
-    </div>
 
+          <div class="input-field col s2">
+               <input type="button"   class="btn btn-success" value="Obtener Direccion" onclick="codeLatLng()" >
+              <input id="latlng" value="-0.917476, -78.632573"  style="display:none" type="text" name="Coordenadas" class="form-control" >
 
-	<div class="row">
-		<div class="col-md-9 col-md-offset-2">
-			<div class="form-group">
+          </div>
 
-                <div align="center" id="map_canvas" style="width: 900px; height: 300px; z-index:0;">
+     </div>
+       <div class="row">
+            <div class="input-field col s8">
+		<label >Buscar País, ciudad o dirección:</label>
+                <input id="add" type="text" class="form-control"  >
+            </div>
+
+          <div class="input-field col s2">
+               <input type="button" class="btn btn-primary" value="Buscar en Mapa" onclick="codeAddress()">
+          </div>
+
+     </div>
+	  <div class="row">
+            <div class="input-field col s12">
+
+                <div align="center" id="map_canvas" style="width: 800px; height: 300px; z-index:0;">
                 </div>
 
 		</div>
         </div>
-	</div>
+
 
 	<div class="content">
                    <div class="col-md-9 col-md-offset-2">
                   <label >Roles:</label>
-				  {{form.roles}}
+				  {% render_field form.roles id="filled-in" class="filled-in" %}
+
 	</div>
         </div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
+
+
+      <div class="row">
+        <div class="input-field col s12">
+
                   <label >Usuario:</label>
-                 <input type="text" name="username" class="form-control" >
-	</div>
-        </div>
-	<div class="content">
-        {{ form.new_password2.errors }}
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Contraseña:</label>
-                 <input type="password" name="password" class="form-control" >
-	</div>
+                  <input type="text" name="username" class="validate" required >
         </div>
 
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
+      </div>
 
-                 <input type="checkbox" style="display:none" checked name="is_staff" class="form-control" >
+     <div class="row">
+          <div class="input-field col s12">
+             <label >Contraseña:</label>
+                 <input type="password" name="password" class="validate" required >
+          </div>
+
+     </div>
+
+
+
+	<div class="content" style="display:none">
+                   <div class="col-md-9 col-md-offset-2">
+                     <label >Activo:</label>
+                 <input type="checkbox"  style="display:none" checked name="is_staff" class="form-control" >
 	</div>
         </div>
 
@@ -311,7 +334,7 @@
         <script>
 
         </script>
-
+</div>
 </form>
          {% for message in messages %}
   <div class="alert {{ message.tags }} alert-dismissible" role="alert">
@@ -319,7 +342,7 @@
       <span aria-hidden="true">&times;</span>
     </button>
     {{ message }}
-  </div>
+
 {% endfor %}
 </div>
 {% endblock %}

@@ -8,18 +8,18 @@ class RegistroForm(forms.ModelForm):
         model= Perfil
         fields = [
             'Cedula',
-            'Direccion',
             'Coordenadas',
             'Telefono',
             'Genero',
             'Ciudadania',
             'roles',
+            'Direccion',
 
 
         ]
         labels = {
             'Cedula': 'Cedula',
-            'Direccion': 'Direccion',
+            'Direccion': '',
             'Coordenadas': 'Coordenadas',
             'Telefono': 'Telefono',
             'Genero': 'Genero',
@@ -30,8 +30,8 @@ class RegistroForm(forms.ModelForm):
         widgets = {
 
             'Cedula': forms.TextInput(attrs={'class': 'form-control'}),
-            'Direccion': forms.TextInput(attrs={'class': 'form-control'}),
-            'Coordenadas': forms.TextInput(attrs={'class': 'form-control'}),
+            'Direccion': forms.TextInput(attrs={'class': 'form-control','id':'address1'}),
+            'Coordenadas': forms.TextInput(attrs={'class': 'form-control','style':'display:none','id':'latlng', 'value':'-0.917476, -78.632573'}),
             'Telefono': forms.TextInput(attrs={'class': 'form-control'}),
             'Genero': forms.TextInput(attrs={'class': 'form-control'}),
             'Ciudadania': forms.TextInput(attrs={'class': 'form-control'}),
