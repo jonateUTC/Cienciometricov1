@@ -6,7 +6,19 @@
     <meta charset="UTF-8">
     <title>Title</title>
 	{% block extrastatic %}
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAiVBq0HNzpFaQrKvjWzHP862amAuwGnE0"></script>
+     <script>
+    $(document).ready(function() {
+      $('input[type=checkbox]').each(function() {
+        if(this.nextSibling.nodeName != 'label') {
+          $(this).after('<label for="'+this.id+'"></label>')
+        }
+      })
+    })
+    </script>
         <script>
 function hola() {
     var x = document.getElementById("myselect").value;
@@ -121,12 +133,7 @@ function hola() {
                  <input type="email" name="email" class="form-control" value="{{user.email}}">
 					   <br><br>
 	</div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-
-                 <input type="checkbox" style="display:none" checked name="is_staff" class="form-control">
-	</div>
-
+	
 	<div class="content">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="form-group">
