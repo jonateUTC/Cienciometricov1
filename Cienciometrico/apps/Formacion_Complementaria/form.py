@@ -6,22 +6,25 @@ class FormacionComform (forms.ModelForm):
         model=formacion_complementaria
         fields=[
             'Nivel_Estudios',
+            'NombreTitulo',
             'Fecha_Fin',
             'Nombre_Centro_Estudios',
-            'investigador',
+
 
         ]
         labels={
             'Nivel_Estudios':'Nivel_Estudios' ,
+            'NombreTitulo': 'NombreTitulo',
             'Fecha_Fin' :'Fecha_Fin_Estudios',
             'Nombre_Centro_Estudios':'Nombre_Centro_Estudios',
-            'investigador':'Investigador',
+
         }
 
         widgets = {
-            'Nivel_Estudios':forms.TextInput(attrs={'class':'form-control'}),
+            'Nivel_Estudios':forms.Select(attrs={'class':'form-control'}),
+            'NombreTitulo':forms.TextInput(attrs={'class':'form-control'}),
             'Fecha_Fin':forms.DateInput(attrs={'class':'form-control'}),
             'Nombre_Centro_Estudios':forms.TextInput(attrs={'class':'form-control'}),
-            'investigador':forms.Select(attrs={'class':'form-control'}),
+
 
         }

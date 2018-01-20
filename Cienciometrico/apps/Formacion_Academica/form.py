@@ -6,22 +6,24 @@ class FormacionAform (forms.ModelForm):
         model=formacion_academica
         fields=[
             'Nivel_Estudios',
+            'NombreTitulo',
             'Fecha_Fin_Estudios',
             'Nombre_Centro_Estudios',
-            'investigador',
 
         ]
         labels={
             'Nivel_Estudios':'Nivel_Estudios' ,
+            'NombreTitulo':'Nombre del titulo',
             'Fecha_Fin_Estudios' :'Fecha_Fin_Estudios',
             'Nombre_Centro_Estudios':'Nombre_Centro_Estudios',
-            'investigador':'Investigador',
+
         }
 
         widgets = {
-            'Nivel_Estudios':forms.TextInput(attrs={'class':'form-control'}),
+            'Nivel_Estudios':forms.Select(attrs={'class':'form-control'}),
+            'NombreTitulo': forms.TextInput(attrs={'class': 'form-control'}),
             'Fecha_Fin_Estudios':forms.DateInput(attrs={'class':'form-control'}),
             'Nombre_Centro_Estudios':forms.TextInput(attrs={'class':'form-control'}),
-            'investigador':forms.Select(attrs={'class':'form-control'}),
+
 
         }

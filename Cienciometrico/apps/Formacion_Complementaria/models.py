@@ -8,10 +8,10 @@ from django.db import models
 from apps.Investigador.models import investigador
 
 class formacion_complementaria(models.Model):
-    Nivel_Estudios=models.CharField(max_length=250,null=True)
+    Nivel_Estudios=models.CharField(max_length=50,null=True)
+    NombreTitulo=models.CharField(max_length=550,null=True)
     Fecha_Fin=models.DateField(null=True)
     Nombre_Centro_Estudios=models.CharField(max_length=250,null=True)
-    investigador=models.ForeignKey(investigador,null=True ,blank=True,on_delete=models.CASCADE)
 
     class Meta:
         permissions = (

@@ -14,13 +14,13 @@
     {% endblock %}
 {% block content %}
 <div class="wow fadeInUp animated"  style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
-     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">FORMACION COMPLEMENTARIA</span> </h2>
-        <div style="float:right;">
+     <h4 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">FORMACION COMPLEMENTARIA</span> </h4>
+        <h6><div style="float:right;">
             <strong style="color:white;font-size:100%">Bienvenido/</strong>
             <strong style="color:white;font-size:100%">{{user.username}}/</strong>
             <strong style="color:white;font-size:100%"><a href="{% url 'logout'%}" style="color:white;"><span class="glyphicon glyphicon-log-out"></span>Cerrar Sesion</a></strong>
         </a>
-            </div>
+            </div></h6>
         </div>
     <br>
 <div class="container" style="width:90%;">
@@ -30,14 +30,14 @@
 <br>
 <div align="center" class="row" style="width:90%;">
 <div class="table-responsive">
-<table class="table table-bordered" style="text-align:center; width:60%; ">
+<table class="table table-bordered" style="text-align:center; width:100%; ">
 	<thead>
 		<tr>
 			<td>#</td>
+            <td>Tipo de Formación</td>
 			<td>Titulo Adquirido</td>
 			<td>Fecha Finalizacion</td>
 			<td>Centro Estudios</td>
-            <td>Investigador</td>
             <td>Acciones</td>
 		</tr>
 
@@ -47,10 +47,11 @@
         {% for formacion_complementaria in object_list %}
         <tr>
             <td>{{formacion_complementaria.id}}</td>
+
             <td>{{formacion_complementaria.Nivel_Estudios}}</td>
+            <td>{{formacion_complementaria.NombreTitulo}}</td>
             <td>{{formacion_complementaria.Fecha_Fin}}</td>
             <td>{{formacion_complementaria.Nombre_Centro_Estudios}}</td>
-            <td>{{formacion_complementaria.investigador}}</td>
 
             <td>
                 <a class="btn btn-warning" href="{% url 'FormacionComplementaria:update_Formacion_Complementaria' formacion_complementaria.id %}" ><span class="glyphicon glyphicon-pencil"></span>Editar</a>
@@ -61,7 +62,7 @@
         {% endfor %}
 
         {% else %}
-        <h1>No hay registros de formación complementaria</h1>
+        <h4>No hay registros de formación complementaria</h4>
         {% endif %}
 
 	</tbody>

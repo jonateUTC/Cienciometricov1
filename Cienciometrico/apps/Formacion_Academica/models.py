@@ -7,10 +7,10 @@ from django.db import models
 
 from apps.Investigador.models import investigador
 class formacion_academica(models.Model):
- Nivel_Estudios=models.CharField(max_length=250,null=True)
+ Nivel_Estudios=models.CharField(max_length=25,null=True)
+ NombreTitulo=models.CharField(max_length=500,null=True)
  Fecha_Fin_Estudios=models.DateField(null=True)
  Nombre_Centro_Estudios=models.CharField(max_length=250,null=True)
- investigador = models.ForeignKey(investigador, null=True, blank=True, on_delete=models.CASCADE)
 
  class Meta:
   permissions = (

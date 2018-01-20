@@ -10,7 +10,7 @@
 <form method="post">
     {% csrf_token %}
     <br><br>
-    <h1>¿Desea eliminar el registro de {{object.Nivel_Estudios}} ?</h1>
+    <h4>¿Desea eliminar el registro de {{object.Nivel_Estudios}} ?</h4>
     <button class="btn btn-danger" type="submit">Si, eliminar</button>
     <a class="btn btn-default" href="{% url 'FormacionAcademica:lista_Formacion_Academica' %}">Cancelar</a>
 </form>

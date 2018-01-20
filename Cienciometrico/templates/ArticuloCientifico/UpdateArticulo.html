@@ -1,105 +1,54 @@
 {% extends 'base1/inicio.html'%}
 {% load staticfiles %}
+{% load bootstrap %}
+{% load material_form %}
+{% load widget_tweaks %}
 {% block extrastatic %}
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   <link rel="stylesheet" href="static/css/animate.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="static/css/animate.min.css">
 {% endblock %}
-    {% block home %}
-    <a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
-    {% endblock %}
-    {% block itemArti %}
-    <a href="{% url 'articulosCientificos:ListaArticulo' %}" id="uno"  class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/articuloCient.png' %}">Artículos Científicos</a>
-    {% endblock %}
-
+{% block home %}
+<a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
+{% endblock %}
+{% block itemArti %}
+<a href="{% url 'articulosCientificos:ListaArticulo' %}" id="uno"  class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/articuloCient.png' %}">Artículos Científicos</a>
+{% endblock %}
 {% block content %}
 <div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
-     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> ACTUALIZAR <span style="color:#FC9C30">ARTÍCULOS CIENTÍFICOS</span> </h2>
+    <h4 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> ACTUALIZAR <span style="color:#FC9C30">ARTÍCULOS CIENTÍFICOS</span> </h4>
+    <h6>
         <div style="float:right;">
             <strong style="color:white;font-size:100%">Bienvenido/</strong>
             <strong style="color:white;font-size:100%">{{user.username}}/</strong>
             <strong style="color:white;font-size:100%"><a href="{% url 'logout'%}" style="color:white;"><span class="glyphicon glyphicon-log-out"></span>Cerrar Sesion</a></strong>
-        </a>
+            </a>
+        </div>
+    </h6>
+</div>
+<br>
+<div class="container">
+<form method="post" >
+    {% csrf_token %}
+    <br>
+    <div class="row">
+        <div class="col-md-9 col-md-offset-2">
+            <a href="{% url 'articulosCientificos:ListaArticulo' %}" class="btn btn-primary  pull-right"><i class="glyphicon glyphicon-eye-open"></i> Ver Todos</a>
+        </div>
+    </div>
+   <div class="row">
+        <div class="input-field col s12">
+       {% form form=form %}{% endform %}
+        </div>
+   </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+                    <button class="btn btn-primary "type="submit">Guardar</button>
+                </div>
             </div>
         </div>
-<br>
-
-  <form method="post" >
-      {% csrf_token %}
-     <br>
-      <div class="row">
-		<div class="col-md-9 col-md-offset-2">
-	<a href="{% url 'articulosCientificos:ListaArticulo' %}" class="btn btn-primary  pull-right"><i class="glyphicon glyphicon-eye-open"></i> Ver Todos</a>
-		</div>
-		</div>
-     <ul>
-
-
-               <div class="row">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Nombre:</label>
-                 <input type="text" name="Nombre" class="form-control" value="{{articulos_cientificos.Nombre}}">
-               </div>
- </div>
-                <div class="row">
-                    <div class="col-md-9 col-md-offset-2">
-                 <label >Numero:</label>
-                    <input type="number" name="Numero" class="form-control" value="{{articulos_cientificos.Numero}}">
-               </div> </div>
-
-         <div class="row">
-             <div class="col-md-9 col-md-offset-2">
-                       <label >Estado:</label>
-                        <input type="text" name="Estado" class="form-control" value="{{articulos_cientificos.Estado}}">
-                     </div> </div>
-              <div class="row">
-                  <div class="col-md-9 col-md-offset-2">
-                  <label >Año:</label>
-                 <input type="text" name="Anio" class="form-control" value="{{articulos_cientificos.Anio}}">
-              </div> </div>
-             <div class="row">
-                 <div class="col-md-9 col-md-offset-2">
-                  <label >  ISSN:</label>
-                  <input type="number" name="ISSN" class="form-control" value="{{ articulos_cientificos.ISSN }}">
-                     </div></div>
-
-             <div class="row">
-                 <div class="col-md-9 col-md-offset-2">
-                              <label >Base Datos:</label>
-                  <input type="text" name="Base_Datos" class="form-control" value="{{ articulos_cientificos.Base_Datos }}">
-                           </div></div>
-             <div class="row">
-                 <div class="col-md-9 col-md-offset-2">
-                              <label >URL</label>
-                             <input type="url" name="Url" class="form-control" value="{{ articulos_cientificos.Url }}">
-                           </div></div>
-               <div class="row">
-                    <div class="col-md-9 col-md-offset-2">
-                              <label >Fecha Publicacion</label>
-                                {{form.Fecha_Publicacion}}
-                    </div>
-               </div>
-
-            <div class="row">
-                 <div class="col-md-9 col-md-offset-2">
-                  <label >Investigador</label>
-                     {{form.investigador}}
-                 </div></div>
-
-
-
-
-         <br>
-<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="form-group">
-				<button class="btn btn-primary "type="submit">Guardar</button>
-			</div>
-		</div>
+</form>
     </div>
-     </ul>
-
-  </form>
-
 {% endblock %}

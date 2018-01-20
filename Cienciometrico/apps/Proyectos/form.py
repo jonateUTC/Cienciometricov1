@@ -7,26 +7,29 @@ class DocumentForm(forms.ModelForm):
     class Meta:
         model = proyecto
         fields = [
+
             'Titulo',
+            'Resumen',
             'Palabras_Claves',
-            'Documentos',
             'Tipo',
-            'investigador',
+            'LineaInvestigacion',
+            'Documentos',
 
         ]
         labels = {
             'Titulo':'Título',
             'Palabras_Claves':'Palabras Clave',
-            'Documentos':'Documentos',
+            'LineaInvestigacion':'Linea de Investigacion',
             'Tipo':'Tipo de Proyecto',
-            'investigador':'Investigador',
+            'Documentos':'Documentos',
+
 
         }
         widgets = {
             'Titulo': forms.TextInput   (attrs={'class': 'form-control'}),
-            'Palabras_Claves':forms.TextInput(attrs={'class':'form-control','id':'tags'}),
-            'Documentos': forms.FileInput(attrs={'class': 'form-control'}),
+            'Resumen':forms.TextInput   (attrs={'class': 'form-control'}),
+            'Palabras_Claves':forms.TextInput(attrs={'class':'form-control','id':'tags','placeholder':'Palabras Claves'}),
             'Tipo': forms.TextInput(attrs={'class': 'form-control'}),
-            'investigador': forms.Select(attrs={'class': 'form-control'}),
-
+            'LineaInvestigacion': forms.TextInput(attrs={'class': 'form-control'}),
+            'Documentos': forms.FileInput(attrs={'class': 'form-control'}),
         }

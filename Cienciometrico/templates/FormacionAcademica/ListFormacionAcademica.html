@@ -14,13 +14,13 @@
     {% endblock %}
 {% block content %}
 <div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
-     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">FORMACIÓN ACADÉMICA</span> </h2>
-        <div style="float:right;">
+     <h4 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">FORMACIÓN ACADÉMICA</span> </h4>
+        <h6><div style="float:right;">
             <strong style="color:white;font-size:100%">Bienvenido/</strong>
             <strong style="color:white;font-size:100%">{{user.username}}/</strong>
             <strong style="color:white;font-size:100%"><a href="{% url 'logout'%}" style="color:white;"><span class="glyphicon glyphicon-log-out"></span>Cerrar Sesion</a></strong>
         </a>
-            </div>
+            </div></h6>
         </div>
     <br>
 <div class="container" style="width:90%;">
@@ -30,14 +30,14 @@
 <br>
 <div align="center" class="row" style="">
 <div class="table-responsive">
-<table class="table table-bordered" style="text-align:center; width:60%; ">
+<table class="table table-bordered" style="text-align:center; width:90%; ">
 	<thead>
 		<tr>
 			<td>#</td>
-			<td>Titulo Adquirido</td>
-			<td>Fecha Finalizacion</td>
-			<td>Centro Estudios</td>
-            <td>Investigador</td>
+            <td>Tipo de Titulación</td>
+			<td>Nombre de Título Adquirido</td>
+			<td>Fecha Finalización</td>
+			<td>Centro donde culmino sus Estudios </td>
             <td>Acciones</td>
 		</tr>
 
@@ -48,9 +48,9 @@
         <tr>
             <td>{{formacion_academica.id}}</td>
             <td>{{formacion_academica.Nivel_Estudios}}</td>
+            <td>{{formacion_academica.NombreTitulo}}</td>
             <td>{{formacion_academica.Fecha_Fin_Estudios}}</td>
             <td>{{formacion_academica.Nombre_Centro_Estudios}}</td>
-            <td>{{formacion_academica.investigador}}</td>
 
             <td>
                 <a class="btn btn-warning" href="{% url 'FormacionAcademica:update_Formacion_Academica' formacion_academica.id %}" ><span class="glyphicon glyphicon-pencil"></span>Editar</a>
@@ -61,7 +61,7 @@
         {% endfor %}
 
         {% else %}
-        <h1>No hay registros de Formación Académica</h1>
+        <h4>No hay registros de Formación Académica</h4>
         {% endif %}
 
 	</tbody>

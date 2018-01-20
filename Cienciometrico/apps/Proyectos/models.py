@@ -3,11 +3,12 @@ from apps.Investigador.models import investigador
 # Create your models here.
 class proyecto(models.Model):
     Titulo = models.CharField(max_length=255)
+    Resumen=models.TextField()
     Palabras_Claves = models.TextField()
-    Documentos = models.FileField(upload_to='proyecto/')
-    uploaded_at = models.DateTimeField(auto_now_add=True)
     Tipo = models.CharField(max_length=255)
-    investigador = models.ForeignKey(investigador, null=True, blank=True, on_delete=models.CASCADE);
+    LineaInvestigacion = models.CharField(max_length=255)
+    Documentos = models.FileField(upload_to='proyecto/',null=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         permissions = (

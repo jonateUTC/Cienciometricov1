@@ -8,38 +8,42 @@ class DocumentForm(forms.ModelForm):
         model = libro
         fields = [
             'Titulo',
-            'Editorial',
-            'ISBN',
             'Resumen',
-            'Ubicacion',
-            'Url',
-            'Anio',
-            'user',
             'PalabrasClave',
+            'Documento',
+            'ISBN',
+            'UbicacionFisica',
+            'Anio',
+            'Editorial',
+            'Url',
+
+
+
 
         ]
         labels = {
-            'Titulo':'Titulo',
-            'Editorial':'Editorial',
+            'Titulo':'Titulo del Libro',
+            'Resumen': 'Resumen del Libro',
+            'PalabrasClave': 'Palabras Claves',
+            'Documento':'Adjuntar Archivo',
             'ISBN':'ISBN',
-            'Resumen':'Resumen',
-            'Ubicacion':'Ubicacion',
-            'Url':'URL',
+            'UbicacionFisica':'Ubicacion del Libro Fisica',
             'Anio':'Año',
-            'user':'Investigador',
-            'PalabrasClave':'Palabras Claves',
+            'Editorial': 'Editorial',
+            'Url':'URL',
+
 
         }
         widgets = {
             'Titulo':forms.TextInput(attrs={'class': 'form-control'}),
-            'Editorial':forms.TextInput(attrs={'class': 'form-control'}),
+            'Resumen': forms.TextInput(attrs={'class': 'form-control'}),
+            'PalabrasClave': forms.TextInput(attrs={'class': 'form-control', 'id': 'tags','placeholder':'Palabras Claves'}),
+            'Documento':forms.FileInput(attrs={'class': 'form-control'}),
             'ISBN':forms.TextInput(attrs={'class': 'form-control'}),
-            'Resumen':forms.FileInput(attrs={'class': 'form-control'}),
-            'Ubicacion':forms.TextInput(attrs={'class': 'form-control'}),
+            'UbicacionFisica':forms.TextInput(attrs={'class': 'form-control'}),
+            'Anio': forms.TextInput(attrs={'class': 'form-control'}),
+            'Editorial':forms.TextInput(attrs={'class': 'form-control'}),
             'Url':forms.URLInput(attrs={'class': 'form-control'}),
-            'Anio':forms.TextInput(attrs={'class': 'form-control'}),
-            'user':forms.CheckboxSelectMultiple(attrs={}),
-            'PalabrasClave':forms.TextInput(attrs={'class': 'form-control','id':'tags'}),
 
 
         }

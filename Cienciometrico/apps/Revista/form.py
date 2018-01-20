@@ -6,7 +6,7 @@ class DocumentForm(forms.ModelForm):
         model= revista
         fields = [
         'Nombre',
-        'Archivo',
+        #'Archivo',
         'ISSN',
         'Base_Indexada',
         'Cuartil_Pertenece',
@@ -16,11 +16,11 @@ class DocumentForm(forms.ModelForm):
 
         ]
         labels={
-            'Nombre': 'Nombre',
-            'Archivo': 'Archivo',
-            'ISSN':'ISSN',
-            'Base_Indexada':'Base Indexada',
-            'Cuartil_Pertenece':'Cuartil Pertenece',
+            'Nombre': 'Nombre de la Revista',
+            #'Archivo': 'Archivo',
+            'ISSN':'ISSN de la Revista',
+            'Base_Indexada':'Base de Datos donde esta Indexada',
+            'Cuartil_Pertenece':'Cuartil al que Pertenece',
             'Factor_Impacto':'Factor Impacto',
             'Url':'Url',
             'investigador': 'Investigador',
@@ -28,12 +28,12 @@ class DocumentForm(forms.ModelForm):
         }
         widgets = {
             'Nombre': forms.TextInput(attrs={'class':'form-control'}),
-            'Archivo': forms.FileInput(attrs={'class': 'form-control'}),
+            #'Archivo': forms.FileInput(attrs={'class': 'form-control','required':False}),
             'ISSN': forms.TextInput(attrs={'class':'form-control'}),
             'Base_Indexada': forms.TextInput(attrs={'class':'form-control'}),
             'Cuartil_Pertenece': forms.TextInput(attrs={'class':'form-control'}),
             'Factor_Impacto': forms.TextInput(attrs={'class':'form-control'}),
             'Url': forms.URLInput(attrs={'class':'form-control'}),
-            'investigador': forms.Select(attrs={'class': 'form-control'}),
+            'investigador': forms.TextInput({'required':False}),
 
         }

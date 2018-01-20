@@ -4,6 +4,7 @@ from apps.roles.models import Rol
 # Create your models here.
 class Perfil(models.Model):
     Cedula = models.CharField(max_length=10, blank=True)
+    Documento = models.FileField(upload_to='foto/', null=True)
     Direccion = models.CharField(max_length=500, blank=True)
     Coordenadas = models.CharField(max_length=450, blank=True)
     Telefono = models.CharField(max_length=10, blank=True)

@@ -15,15 +15,22 @@
 {% block content %}
 
 <div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
-     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">CAMPUS</span> </h2>
-        </div>
+     <h4 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">CAMPUS</span> </h4>
+ <h6> <div style="float:right;">
+            <strong style="color:white;font-size:100%">Bienvenido/</strong>
+            <strong style="color:white;font-size:100%">{{user.username}}/</strong>
+            <strong style="color:white;font-size:100%"><a href="{% url 'logout'%}" style="color:white;"><span class="glyphicon glyphicon-log-out"></span>Cerrar Sesion</a></strong>
+        </a>
+            </div>
+           </h6>
+</div>
     <br>
 <div class="container">
 <a href="{% url 'campus:campus_crear' %}" class="btn btn-primary  pull-right "><i class="glyphicon glyphicon-plus"></i> Nuevo Campus</a>
     </div>
 <br>
 <div class="container" align="center">
-<table class="table table-bordered" style="text-align:center; " >
+<table class="table table-bordered" style="text-align:center;" >
 
 	<thead>
 		<tr>
@@ -51,7 +58,7 @@
         {% endfor %}
 
         {% else %}
-        <h1>No hay registros de Campus</h1>
+        <h4>No hay registros de Campus</h4>
         {% endif %}
 
 	</tbody>
