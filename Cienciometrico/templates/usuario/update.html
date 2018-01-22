@@ -1,15 +1,18 @@
 {% extends 'base1/inicio.html'%}
 {% load staticfiles %}
+{% load bootstrap %}
+{% load material_form %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 	{% block extrastatic %}
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAiVBq0HNzpFaQrKvjWzHP862amAuwGnE0"></script>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAiVBq0HNzpFaQrKvjWzHP862amAuwGnE0"></script>
      <script>
     $(document).ready(function() {
       $('input[type=checkbox]').each(function() {
@@ -19,12 +22,20 @@
       })
     })
     </script>
-        <script>
-function hola() {
-    var x = document.getElementById("myselect").value;
-    document.getElementById("gen").value = x;
-}
-</script>
+<script>
+ $(document).ready(function() {
+    var x = document.getElementById("masculino").value;
+    var n = document.getElementById("femenino").value;
+    var y = document.getElementById("genero").value;
+    if(y == x){
+        document.getElementById("masculino").selected=true;
+    }else{
+         document.getElementById("femenino").selected=true;
+    }
+
+ });
+
+    </script>
     {% endblock %}
 
 
@@ -37,103 +48,144 @@ function hola() {
 	<a href="{% url 'usuario:registrar' %}" id="uno" class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/User.png' %}"> Usuario</a>
 	{% endblock %}
 	{% block content %}
-<form method="post">
+
+<form method="post" enctype="multipart/form-data">
 	{% csrf_token %}
 	 <div  class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
-     <h2 align="center" style="color:white"><span class="glyphicon glyphicon-edit"></span> ACTUALIZAR <span style="color:#FC9C30">USUARIO</span> </h2>
-        <div style="float:right;">
+     <h4 align="center" style="color:white"><span class="glyphicon glyphicon-plus"></span> ACTUALIZAR <span style="color:#FC9C30">USUARIO</span> </h4>
+        <h6><div style="float:right;">
             <strong style="color:white;font-size:100%">Bienvenido/</strong>
             <strong style="color:white;font-size:100%">{{user.username}}/</strong>
             <strong style="color:white;font-size:100%"><a href="{% url 'logout'%}" style="color:white;"><span class="glyphicon glyphicon-log-out"></span>Cerrar Sesion</a></strong>
         </a>
-            </div>
+            </div></h6>
         </div>
     <br>
+  <div class="container">
 
-	<div class="content">
-		<div class="col-md-9 col-md-offset-2">
-		<label >Cedula:</label>
-        <input type="text" name="Cedula" class="form-control" value="{{perfil.Cedula}}">
-	</div>
-	<div class="content">
-		<div class="col-md-9 col-md-offset-2">
-		<label >Dirección:</label>
-		<input type="text" name="Direccion" class="form-control" id="address1" value="{{perfil.Direccion}}">
-	</div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Coordenadas:</label><br>
-				  <input type="button"   class="btn btn-success" value="Obtener Direccion" onclick="codeLatLng()" >
-                  <br>
-
-                 <input id="latlng" value="{{perfil.Coordenadas}}"  style="display:none" type="text" name="Coordenadas" class="form-control" >
-					   <br>
-	</div>
-	<div class="row">
-		<div class="col-md-9 col-md-offset-2">
-			<div class="form-group">
-                 <div align="center" id="map_canvas" style="width: 900px; height: 300px;" >
-            </div>
-		</div>
+       <div class="row">
+        <div class="input-field col s12">
+         <label >Cedula:</label>
+        <input id="input_number" type="number" data-length="10" maxlength="10" minlength="10" name="Cedula" class="validate"  required value="{{perfil.Cedula}}" >
         </div>
-	</div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Telefono:</label>
-                 <input type="number" name="Telefono" class="form-control" value="{{perfil.Telefono}}" >
-	</div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Género:</label>
-                       <input id="gen" type="text" name="Genero" class="form-control" style="display:none" value="{{perfil.Genero}}" >
-                    <select id="myselect" class="form-control" onchange="hola()">
 
-                            <option value="Masculino" >Masculino</option>
+      </div>
 
-                            <option value="Femenino" >Femenino</option>
+     <div class="row">
+          <div class="input-field col s6">
+              <label >Nombres:</label>
+              <input type="text" name="first_name" class="validate" value="{{perfil.user.first_name}}" required >
+          </div>
+          <div class="input-field col s6">
+              <label >Apellidos:</label>
+              <input type="text" name="last_name" class="validate" value="{{perfil.user.last_name}}" required >
+          </div>
+
+     </div>
+
+       <div class="row">
+            <div class="input-field col s6">
+              <label >Telefono:</label>
+                 <input type="number" name="Telefono" class="validate" value="{{perfil.Telefono}}" required>
+          </div>
+
+          <div class="input-field col s6">
+              <label >Correo Electrónico:</label>
+                 <input type="email" name="email" class="validate" value="{{perfil.user.email}}" required>
+          </div>
+
+     </div>
+
+	<div class="content">
+                   <div class="col-md-14 col-md-offset-">
+                       <input type="text" id="genero" style="display:none;" value="{{perfil.Genero}}" required>
+                  <select name="Genero" class="browser-default" >
+                            <option>Seleccione</option>
+                            <option id="masculino" value="Masculino" >Masculino</option>
+
+                            <option id="femenino" value="Femenino" >Femenino</option>
 
 
                     </select>
-	</div>
+                 	</div>
+        </div>
 
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
+	 <div class="row">
+        <div class="input-field col s12">
                   <label >Ciudadania:</label>
-                 <input type="text" name="Ciudadania" class="form-control" value="{{perfil.Ciudadania}}" >
+                 <input type="text" name="Ciudadania" class="validate" value="{{perfil.Ciudadania}}" required >
 	</div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Roles:</label>
-				  {{form.roles}}
-	</div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Usuario:</label>
-                 <input type="text" name="username" class="form-control" value="{{user.username}}">
-	</div>
-	<div class="content" style="display:none">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Contraseña:</label>
-                 <input type="password" name="password" class="form-control" value="{{user.password}}" >
-	</div>
+        </div>
+
+      <div class="row">
+            <div class=" col s8">
+		<label >Dirección:</label>
+		<input type="text" name="Direccion" class="form-control" id="address1"  value="{{perfil.Direccion}}" required>
+            </div>
+
+          <div class="input-field col s2">
+               <input type="button"   class="btn btn-success" value="Obtener Direccion" onclick="codeLatLng()" >
+              <input id="latlng" value="{{perfil.Coordenadas}}"  style="display:none" type="text" name="Coordenadas" class="form-control" >
+
+          </div>
+
      </div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Nombres:</label>
-                 <input type="text" name="first_name" class="form-control" value="{{user.first_name}}">
+       <div class="row">
+            <div class="input-field col s8">
+		<label >Buscar País, ciudad o dirección:</label>
+                <input id="add" type="text" class="form-control"  >
+            </div>
+
+          <div class="input-field col s2">
+               <input type="button" class="btn btn-primary" value="Buscar en Mapa" onclick="codeAddress()">
+          </div>
+
+     </div>
+	  <div class="row">
+            <div class="input-field col s12">
+
+                <div align="center" id="map_canvas" style="width: 800px; height: 300px; z-index:0;">
+                </div>
+
+		</div>
+        </div>
+
+    <br>
+	<div class="row">
+                   <div class=" col s12">
+                  <label >Roles:</label>
+				  {% render_field form.roles id="filled-in" class="filled-in" %}
+
 	</div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Apellidos:</label>
-                 <input type="text" name="last_name" class="form-control" value="{{user.last_name}}">
+        </div>
+
+
+      <div class="row">
+        <div class="input-field col s12">
+
+                  <label >Usuario:</label>
+                  <input type="text" name="username" class="validate" value="{{perfil.user.username}}" required >
+        </div>
+
+      </div>
+
+     <div class="row">
+          <div class="input-field col s12" style="display:none">
+             <label >Contraseña:</label>
+                 <input type="password" name="password" class="validate" value="{{perfil.user.password}}" required >
+          </div>
+
+     </div>
+
+
+
+	<div class="content" >
+                   <div class="col-md-9 col-md-offset-2"style="display:none">
+                     <label >Activo:</label>
+                 <input type="checkbox"   name="is_staff" checked class="form-control" >
 	</div>
-	<div class="content">
-                   <div class="col-md-9 col-md-offset-2">
-                  <label >Correo Electrónico:</label>
-                 <input type="email" name="email" class="form-control" value="{{user.email}}">
-					   <br><br>
-	</div>
-	
+        </div>
+
 	<div class="content">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="form-group">
@@ -141,6 +193,8 @@ function hola() {
 			</div>
 		</div>
 	</div>
+
+
 	<script type='text/javascript'>
                   var geocoder;
                   var map;
@@ -175,7 +229,11 @@ function hola() {
 
                   function initialize() {
                   geocoder = new google.maps.Geocoder();
-                  var latlng = new google.maps.LatLng(-0.917476, -78.632573);
+                  var input = $('#latlng').val();
+                  var latlngStr = input.split(',', 2);
+                  var lat = parseFloat(latlngStr[0]);
+                  var lng = parseFloat(latlngStr[1]);
+                  var latlng = new google.maps.LatLng(lat, lng);
                   var mapOptions = {
                   zoom: 13,
                   center: latlng,
@@ -198,7 +256,8 @@ function hola() {
                   geocoder.geocode({'latLng': latlng}, function(results, status) {
                   if (status == google.maps.GeocoderStatus.OK) {
                    if (results[0]) {
-                     map.fitBounds(results[0].geometry.viewport);
+
+                     map.setCenter(results[0].geometry.viewport);
                              marker.setMap(map);
                              marker.setPosition(latlng);
                      $('#address').text(results[0].formatted_address);
@@ -225,6 +284,21 @@ function hola() {
                   gmaps_ads();
 
                   });
+                  function codeAddress() {
+                        var address = document.getElementById('add').value;
+                        geocoder.geocode( { 'address': address}, function(results, status) {
+                            if (status == 'OK') {
+                                map.setCenter(results[0].geometry.location);
+                                marker.setMap(map);
+                                marker.setPosition(results[0].geometry.location);
+                                var markerLtLg = marker.getPosition();
+                                document.getElementById('latlng').value=markerLtLg.lat()+','+markerLtLg.lng();
+
+                            } else {
+                                alert('Localización no tuvo éxito por la siguiente razón: ' + status);
+                            }
+                        });
+                  }
                </script>
                <script>
                function showContent() {
@@ -274,8 +348,21 @@ function hola() {
         }
     }
                </script>
+        <script>
 
+        </script>
+</div>
 </form>
+         {% for message in messages %}
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+
+{% endfor %}
+</div>
 {% endblock %}
+
 </body>
 </html>

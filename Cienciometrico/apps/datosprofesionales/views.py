@@ -55,6 +55,7 @@ class DatosProfeCreate(CreateView):
             if i not in privilegio:
                 privilegio.append(i)
         context['usuario'] = privilegio
+        context['perfil'] = perfil
         return context
 class DatosProfeUpdate(UpdateView):
     model = datos_profecionales
@@ -80,6 +81,7 @@ class DatosProfeUpdate(UpdateView):
             if i not in privilegio:
                 privilegio.append(i)
         context['usuario'] = privilegio
+        context['perfil'] = perfil
         return context
 class DatosProfeDelete(DeleteView):
     model = datos_profecionales
