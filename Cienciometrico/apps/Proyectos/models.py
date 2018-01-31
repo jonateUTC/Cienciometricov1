@@ -7,7 +7,7 @@ class proyecto(models.Model):
     Palabras_Claves = models.TextField()
     Tipo = models.CharField(max_length=255)
     LineaInvestigacion = models.CharField(max_length=255)
-    Documentos = models.FileField(upload_to='proyecto/',null=True)
+    Documentos = models.FileField(upload_to='proyecto/', null=True, blank=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

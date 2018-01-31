@@ -6,7 +6,7 @@ class libro(models.Model):
     Titulo=models.CharField(max_length=200, null=True, blank=True)
     Resumen=models.TextField(null=True)
     PalabrasClave = models.CharField(max_length=300, null=True, blank=True)
-    Documento=models.FileField(upload_to='libro/')
+    Documento=models.FileField(upload_to='libro/', null=True, blank=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     ISBN = models.CharField(max_length=50, null=True, blank=True)
     UbicacionFisica=models.CharField(max_length=50, null=True, blank=True)

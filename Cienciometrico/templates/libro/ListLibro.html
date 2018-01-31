@@ -55,9 +55,13 @@
             <td>{{libro.Titulo}}</td>
             <td>{{libro.Resumen}}</td>
             <td>{{libro.PalabrasClave}}</td>
-             <td>
+
+             <td>{% if libro.Documento.url != null %}
                     <a href="{{libro.Documento.url}}">{{libro.Documento.name}}</a>
                     <small>(Subido en: {{ libro.uploaded_at }})</small>
+                 {% else %}
+                 <h6>no tiene documento</h6>
+                 {% endif %}
             </td>
             <td>{{libro.ISBN}}</td>
             <td>{{libro.UbicacionFisica}}</td>

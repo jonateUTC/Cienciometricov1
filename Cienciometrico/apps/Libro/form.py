@@ -38,7 +38,7 @@ class DocumentForm(forms.ModelForm):
             'Titulo':forms.TextInput(attrs={'class': 'form-control'}),
             'Resumen': forms.TextInput(attrs={'class': 'form-control'}),
             'PalabrasClave': forms.TextInput(attrs={'class': 'form-control', 'id': 'tags','placeholder':'Palabras Claves'}),
-            'Documento':forms.FileInput(attrs={'class': 'form-control'}),
+            'Documento':forms.FileInput( {'required':False}),
             'ISBN':forms.TextInput(attrs={'class': 'form-control'}),
             'UbicacionFisica':forms.TextInput(attrs={'class': 'form-control'}),
             'Anio': forms.TextInput(attrs={'class': 'form-control'}),
@@ -47,3 +47,4 @@ class DocumentForm(forms.ModelForm):
 
 
         }
+

@@ -4,7 +4,7 @@ from apps.Investigador.models import investigador
 class revista(models.Model):
 
  Nombre = models.CharField(max_length=500,unique=True)
- Archivo = models.FileField(upload_to='revista/',null=True)
+ Archivo = models.FileField(upload_to='revista/', null=True, blank=True)
  uploaded_at = models.DateTimeField(auto_now_add=True,null=True)
  investigador = models.ForeignKey(investigador, null=True, blank=True, on_delete=models.CASCADE)
  ISSN=models.CharField(max_length=250,null=True,blank=True)

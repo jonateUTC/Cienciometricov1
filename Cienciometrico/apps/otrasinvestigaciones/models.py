@@ -6,7 +6,7 @@ class otrasinvestigaciones(models.Model):
  Titulo = models.CharField(max_length=255)
  Resumen = models.TextField()
  Palabras_Clave = models.TextField()
- Documento = models.FileField(upload_to='otrasinvestigaciones/',null=True)
+ Documento = models.FileField(upload_to='otrasinvestigaciones/', null=True, blank=True)
  uploaded_at = models.DateTimeField(auto_now_add=True)
  FechaInicio = models.DateField()
  FechaFin= models.DateField()
