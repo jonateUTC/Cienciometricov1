@@ -18,17 +18,17 @@ class articuloform(forms.ModelForm):
             'Fecha_Publicacion',
         ]
         labels={
-            'Nombre':'Título del Articulo',
-            'Resumen':'Resumen del Articulo',
+            'Nombre':'Título del Artículo',
+            'Resumen':'Resumen del Artículo',
             'PalabrasClaves':'Palabras Claves',
             'Documento':'Adjuntar Documento',
             'NombreRevista':'Nombre de la Revista',
-            'Volumen':'Volumen de Articulo',
-            'Numero':'Numero de Articulo',
+            'Volumen':'Volumen de Artículo',
+            'Numero':'Número de Artículo',
             'ISSN':'ISSN',
             'Base_Datos':'Base de Datos donde esta indexada la Revista',
             'Url':'Url donde se encuentra la revista',
-            'Fecha_Publicacion':'Fecha de Publicacion de la Revista',
+            'Fecha_Publicacion':'Fecha de Publicación de la Revista',
         }
         widgets={
             'Nombre':forms.TextInput(attrs={'class':'form-control'}),

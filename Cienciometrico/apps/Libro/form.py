@@ -22,12 +22,12 @@ class DocumentForm(forms.ModelForm):
 
         ]
         labels = {
-            'Titulo':'Titulo del Libro',
+            'Titulo':'Título del Libro',
             'Resumen': 'Resumen del Libro',
             'PalabrasClave': 'Palabras Claves',
             'Documento':'Adjuntar Archivo',
             'ISBN':'ISBN',
-            'UbicacionFisica':'Ubicacion del Libro Fisica',
+            'UbicacionFisica':'Ubicación Física del Libro',
             'Anio':'Año',
             'Editorial': 'Editorial',
             'Url':'URL',

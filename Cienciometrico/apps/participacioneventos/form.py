@@ -22,7 +22,7 @@ class DocuForm(forms.ModelForm):
         ]
         labels = {
             'Titulo':'Título del Evento',
-            'Nivel_Autoria':'Nivel de Autoria',
+            'Nivel_Autoria':'Nivel de Autoría',
             'Resumen':'Resumen',
             'Palabras_Clave':'Palabras Claves',
             'Documento':'Adjuntar Documento',

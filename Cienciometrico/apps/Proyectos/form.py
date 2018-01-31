@@ -19,7 +19,7 @@ class DocumentForm(forms.ModelForm):
         labels = {
             'Titulo':'Título',
             'Palabras_Claves':'Palabras Clave',
-            'LineaInvestigacion':'Linea de Investigacion',
+            'LineaInvestigacion':'Linea de Investigación',
             'Tipo':'Tipo de Proyecto',
             'Documentos':'Documentos',
 

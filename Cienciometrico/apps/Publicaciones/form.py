@@ -14,7 +14,7 @@ class formPublicaciones(forms.ModelForm):
         labels={
             'Titulo':'Titulo de la Publicación',
             'NombrePublica':'Nombre de la Publicación',
-            'UbicacionFisica':'Ubicacion Fisica Documento',
+            'UbicacionFisica':'Ubicación Física Documento',
             'Url':'Url',
 
         }

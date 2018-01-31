@@ -15,17 +15,17 @@
 {% block content %}
 
 <div class="wow fadeInUp animated "  style=" background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
-     <h4 align="center" style="color:white"><span class="glyphicon glyphicon-plus"></span> LISTADO DE <span style="color:#FC9C30">PAISES</span> </h4>
+     <h4 align="center" style="color:white"><span class="glyphicon glyphicon-plus"></span> LISTADO DE <span style="color:#FC9C30">PAÍSES</span> </h4>
  <h6><div style="float:right;">
             <strong style="color:white;font-size:100%">Bienvenido/</strong>
             <strong style="color:white;font-size:100%">{{user.username}}/</strong>
-            <strong style="color:white;font-size:100%"><a href="{% url 'logout'%}" style="color:white;"><span class="glyphicon glyphicon-log-out"></span>Cerrar Sesion</a></strong>
+            <strong style="color:white;font-size:100%"><a href="{% url 'logout'%}" style="color:white;"><span class="glyphicon glyphicon-log-out"></span>Cerrar Sesión</a></strong>
         </a>
             </div></h6>
 </div>
     <br>
 <div class="container" style="width:90%;">
-<a href="{% url 'pais:pais_crear' %}" class="btn btn-primary  pull-right "><i class="glyphicon glyphicon-plus"></i> Nuevo Pais</a>
+<a href="{% url 'pais:pais_crear' %}" class="btn btn-primary  pull-right "><i class="glyphicon glyphicon-plus"></i> Nuevo País</a>
     </div>
 <br>
 <div class="table-responsive">
@@ -54,7 +54,7 @@
         {% endfor %}
 
         {% else %}
-        <h1>No hay registros de Paises</h1>
+        <h1 align="center">No hay registros de Países</h1>
         {% endif %}
 
 	</tbody>

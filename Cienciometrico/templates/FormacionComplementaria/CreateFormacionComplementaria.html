@@ -21,11 +21,11 @@
  <form method="post">
         {% csrf_token %}
 	   <div class="wow fadeInUp animated" style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
-     <h4 align="center" style="color:white"><span class="glyphicon glyphicon-plus"></span> NUEVA <span style="color:#FC9C30">FORMACION COMPLEMENTARIA</span> </h4>
+     <h4 align="center" style="color:white"><span class="glyphicon glyphicon-plus"></span> NUEVA <span style="color:#FC9C30">FORMACIÓN COMPLEMENTARIA</span> </h4>
         <h6><div style="float:right;">
             <strong style="color:white;font-size:100%">Bienvenido/</strong>
             <strong style="color:white;font-size:100%">{{user.username}}/</strong>
-            <strong style="color:white;font-size:100%"><a href="{% url 'logout'%}" style="color:white;"><span class="glyphicon glyphicon-log-out"></span>Cerrar Sesion</a></strong>
+            <strong style="color:white;font-size:100%"><a href="{% url 'logout'%}" style="color:white;"><span class="glyphicon glyphicon-log-out"></span>Cerrar Sesión</a></strong>
         </a>
             </div></h6>
 	   </div>
@@ -42,7 +42,7 @@
 				<select name="Nivel_Estudios" class="browser-default" required>
 					 <option value="" >---------------------Seleccione--------------------</option>
 					 <option value="DIPLOMADO" >DIPLOMADO</option>
-					 <option value="MAESTRIA" >MAESTRIA</option>
+					 <option value="MAESTRIA" >MAESTRÍA</option>
 					 <option value="DOCTORADO" >DOCTORADO</option>
 
 
@@ -61,7 +61,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="form-group input-field">
-				<label >Fecha Finalizacion</label>
+				<label >Fecha Finalización</label>
 				<input class="datepicker" type="date" name="Fecha_Fin" required>
 			</div>
 		</div>

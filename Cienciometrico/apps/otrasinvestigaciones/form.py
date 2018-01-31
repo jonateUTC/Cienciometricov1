@@ -20,7 +20,7 @@ class DocumentForm(forms.ModelForm):
             'Palabras_Clave':'Palabras Clave',
             'Documento':'Adjuntar Documento',
             'FechaInicio':'Fecha de Inicio',
-            'FechaFin':'Fecha de Culminacion',
+            'FechaFin':'Fecha de Culminación',
             'Url':'Link',
         }
         widgets = {

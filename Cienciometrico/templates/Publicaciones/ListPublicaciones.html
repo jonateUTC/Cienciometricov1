@@ -10,16 +10,16 @@
     <a href="{% url 'inicio:logeo' %}"  class=" w3-bar-item w3-button"><img width="15%" src="{% static 'images/home.png' %}"> Home</a>
     {% endblock %}
     {% block itemPublicaciones %}
-    <a href="{% url 'publicaciones:lista_Publicaciones' %}" id="uno" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/publicaciones.png' %}">Publicaciones</a>
+    <a href="{% url 'publicaciones:lista_Publicaciones' %}" id="uno" class="w3-bar-item w3-button"><img width="15%" src="{% static 'images/publicaciones.png' %}">Otras Publicaciones</a>
     {% endblock %}
 
 {% block content %}
 <div class="wow fadeInUp animated"  style="background: #009688; height:20%;  padding: 1cm 3cm 1cm 3cm;" >
-     <h4 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">PUBLICACIONES</span> </h4>
+     <h4 align="center" style="color:white"><span class="glyphicon glyphicon-th-list"></span> LISTADO DE <span style="color:#FC9C30">OTRAS PUBLICACIONES</span> </h4>
 <h6><div style="float:right;">
             <strong style="color:white;font-size:100%">Bienvenido/</strong>
             <strong style="color:white;font-size:100%">{{user.username}}/</strong>
-            <strong style="color:white;font-size:100%"><a href="{% url 'logout'%}" style="color:white;"><span class="glyphicon glyphicon-log-out"></span>Cerrar Sesion</a></strong>
+            <strong style="color:white;font-size:100%"><a href="{% url 'logout'%}" style="color:white;"><span class="glyphicon glyphicon-log-out"></span>Cerrar Sesión</a></strong>
         </a>
             </div></h6>
 </div>
@@ -38,7 +38,7 @@
 			<td>#</td>
 			<td>Titulo de la Publicación</td>
 			<td>Nombre de Publicación</td>
-			<td>Ubicacion Fisica</td>
+			<td>Ubicación Física</td>
             <td>URL</td>
             <td>Acciones</td>
 		</tr>
